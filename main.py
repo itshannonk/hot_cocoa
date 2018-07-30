@@ -11,11 +11,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class
 
-dict_names = {'playerName': save_player_name,
 
-            }
 # First game page
 class StartGame(webapp2.RequestHandler):
     def get(self):
