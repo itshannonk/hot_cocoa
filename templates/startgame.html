@@ -24,7 +24,7 @@
   </style>
   </head>
   <body onload="beginning()">
-    <!-- Link javascript file -->
+    <!-- function for button and text-->
     <script type='text/javascript'>
 
     function beginning(){
@@ -44,11 +44,11 @@
     <h1>AI or You</h1>
     <h3>Prevent AI takeover - a text-based game</h3>
 
-    <!-- this is the intro to the game -->
+    <!-- this is the intro to the game: made the button and text for player name -->
     <p id="start">Click on the button to start the game</p>
     <input type="button" id="playButton" onclick="startGame()" value="Play">
     <input type="text" id="player_name" value="">
 
-    <p></p>
+    <p id="playerName"> {{playerName}}</p>
   </body>
 </html>
