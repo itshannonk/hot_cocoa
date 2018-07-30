@@ -51,6 +51,14 @@ class Searching(webapp2.RequestHandler):
         # Render page using template
         self.response.write(FifthPageTemp.render())
 
+class Confront(webapp2.RequestHandler):
+    def get(self):
+        # Link Handler to webpage
+        FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/game5.html')
+
+        # Render page using template
+        self.response.write(FifthPageTemp.render())
+
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
     ('/', MainPage),
