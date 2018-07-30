@@ -1,5 +1,6 @@
 import webapp2
 
+
 # First game page
 class MainPage(webapp2.RequestHandler):
     def get(self):
