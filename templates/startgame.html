@@ -13,20 +13,28 @@
       border-style: solid;
       border-color: maroon;
       border-width: thick;
+      align: right;
     }
-    input:hover {
-      background-color: yellow;
+    #playButton:hover {
+      font-size: 30px;
     }
+
+
+  }
   </style>
   </head>
-  <body>
+  <body onload="beginning()">
     <!-- Link javascript file -->
     <script type='text/javascript'>
 
+    function beginning(){
+      document.getElementById("player_name").style.visibility = "hidden";
+    }
 
     function startGame() {
-      document.getElementById("start").innerHTML = "Hello";
+      document.getElementById("start").innerHTML = "What is your name?";
       document.getElementById("playButton").style.visibility = "hidden";
+      document.getElementById("player_name").style.visibility = "visible";
     }
 
 
@@ -34,11 +42,12 @@
     </script>
 
     <h1>AI or You</h1>
-    <h3>Prevent AI takeover - text-based game</h3>
+    <h3>Prevent AI takeover - a text-based game</h3>
 
     <!-- this is the intro to the game -->
     <p id="start">Click on the button to start the game</p>
     <input type="button" id="playButton" onclick="startGame()" value="Play">
+    <input type="text" id="player_name" value="">
 
     <p></p>
   </body>
