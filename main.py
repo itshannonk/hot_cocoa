@@ -15,19 +15,15 @@ class MainPage(webapp2.RequestHandler):
         MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/game1.html')
 
 # Second game page
-class MainPage(webapp2.RequestHandler):
+class SecondPage(webapp2.RequestHandler):
     def get(self):
         #stuff
 
 # Third game page
-class MainPage(webapp2.RequestHandler):
+class ThirdPage(webapp2.RequestHandler):
     def get(self):
         #stuff
 
-# FOurth game page
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        #stuff
 
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
