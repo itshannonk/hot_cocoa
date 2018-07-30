@@ -3,10 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title> AI or You </title>
+
   </head>
   <body>
     <!-- Link javascript file -->
-    <script type='text/javascript' src='javascript/game1.js'></script>
-    This is the first HTML page {{ number }}
+    <script type='text/javascript'>
+
+
+    function startGame() {
+      document.getElementById("start").innerHTML = intro;
+      document.getElementById("playButton").style.visibility = "hidden";
+    }
+
+
+
+    </script>
+
+    <h1>AI or You</h1>
+    <h3>Prevent AI takeover - text-based game</h3>
+
+    <!-- this is the intro to the game -->
+    <p id="start">Click on the button to start the game</p>
+    <button id="playButton" onclick="startGame()">Play</button>
+
+
+
+    <p></p>
   </body>
 </html>
