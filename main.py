@@ -2,6 +2,8 @@
 import webapp2
 import jinja2
 import os
+import json
+from aigame_model import Player
 
 # Create Jinja environment templates
 JINJA_ENVIRONMENT = jinja2.Environment(

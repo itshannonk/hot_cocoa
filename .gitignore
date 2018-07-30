@@ -1,5 +1,4 @@
-
 templates/game1.html
 templates/game2.html
-main.pyc
 .DS_Store
+*.pyc
