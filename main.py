@@ -10,10 +10,10 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 # First game page
-class MainPage(webapp2.RequestHandler):
+class StartGame(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
-        MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/game1.html')
+        MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/startgame.html')
 
         self.response.write(MainPageTemp.render())
 
@@ -21,7 +21,7 @@ class MainPage(webapp2.RequestHandler):
 class Entrance(webapp2.RequestHandler):
     def get(self):
         # Link Handeler to webpage
-        SecPageTemp = JINJA_ENVIRONMENT.get_template('templates/game2.html')
+        SecPageTemp = JINJA_ENVIRONMENT.get_template('templates/entrance.html')
 
         # Render page using template
         self.response.write(SecPageTemp.render())
@@ -30,7 +30,7 @@ class Entrance(webapp2.RequestHandler):
 class Watson(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
-        ThirdPageTemp = JINJA_ENVIRONMENT.get_template('templates/game3.html')
+        ThirdPageTemp = JINJA_ENVIRONMENT.get_template('templates/watson.html')
 
         # Render page using template
         self.response.write(ThirdPageTemp.render())
@@ -38,22 +38,22 @@ class Watson(webapp2.RequestHandler):
 class Searching(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
-        FourthPageTemp = JINJA_ENVIRONMENT.get_template('templates/game4.html')
+        FourthPageTemp = JINJA_ENVIRONMENT.get_template('templates/searching.html')
 
         # Render page using template
         self.response.write(FourthPageTemp.render())
 
-class Searching(webapp2.RequestHandler):
+class Confront(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
-        FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/game5.html')
+        FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/confront.html')
 
         # Render page using template
         self.response.write(FifthPageTemp.render())
 
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/startgame', StartGame),
     ('/entrance', Entrance),
     ('/watson', Watson),
     ('/searching', Searching),
