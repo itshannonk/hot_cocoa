@@ -11,17 +11,23 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 # First game page
+class StartGame(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
 <<<<<<< HEAD
         MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/game1.html')
         variable = False
+=======
+        MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/startgame.html')
+
+>>>>>>> 19c973a2a1765a9ecd63b0b3c99cb232ca2e1db2
         self.response.write(MainPageTemp.render())
 
 # Second game page
 class Entrance(webapp2.RequestHandler):
     def get(self):
         # Link Handeler to webpage
+        SecPageTemp = JINJA_ENVIRONMENT.get_template('templates/entrance.html')
 
         # Render page using template
         self.response.write(SecPageTemp.render())
@@ -30,6 +36,7 @@ class Entrance(webapp2.RequestHandler):
 class Watson(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
+        ThirdPageTemp = JINJA_ENVIRONMENT.get_template('templates/watson.html')
 
         # Render page using template
         self.response.write(ThirdPageTemp.render())
@@ -37,6 +44,7 @@ class Watson(webapp2.RequestHandler):
 class Searching(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
+        FourthPageTemp = JINJA_ENVIRONMENT.get_template('templates/searching.html')
 
         # Render page using template
         self.response.write(FourthPageTemp.render())
@@ -44,12 +52,14 @@ class Searching(webapp2.RequestHandler):
 class Confront(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
+        FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/confront.html')
 
         # Render page using template
         self.response.write(FifthPageTemp.render())
 
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
+    ('/startgame', StartGame),
     ('/entrance', Entrance),
     ('/watson', Watson),
     ('/searching', Searching),
