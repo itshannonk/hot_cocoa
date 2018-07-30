@@ -1,23 +1,36 @@
 # AI or You main python file
+# import libraries
 import webapp2
 import jinja2
 import os
+import json
 
-variable = True
 # Create Jinja environment templates
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+# FUNCTIONS
+# convert text into json# JSON maker function
+def makeJSON(string):
+    js_value = json.dumps(string)
+    js_value = (json.dumps(string)
+    .replace(u'<', u'\\u003c')
+    .replace(u'>', u'\\u003e')
+    .replace(u'&', u'\\u0026')
+    .replace(u"'", u'\\u0027'))
+    return string
+
 # First game page
 class StartGame(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
         MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/startgame.html')
+        sentence = makeJSON('it\'s shannon')
 
         # Render page using template
-        self.response.write(MainPageTemp.render())
+        self.response.write(MainPageTemp.render(sentence=sentence))
 
 # Second game page
 class Entrance(webapp2.RequestHandler):
