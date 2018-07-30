@@ -2,6 +2,7 @@
 import webapp2
 import jinja2
 import os
+from aigame_model import Player
 
 variable = True
 # Create Jinja environment templates
@@ -10,6 +11,11 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+class
+
+dict_names = {'playerName': save_player_name,
+
+            }
 # First game page
 class StartGame(webapp2.RequestHandler):
     def get(self):
@@ -49,14 +55,6 @@ class Confront(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
         FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/confront.html')
-
-        # Render page using template
-        self.response.write(FifthPageTemp.render())
-
-class Confront(webapp2.RequestHandler):
-    def get(self):
-        # Link Handler to webpage
-        FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/game5.html')
 
         # Render page using template
         self.response.write(FifthPageTemp.render())
