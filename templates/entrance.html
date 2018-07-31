@@ -3,8 +3,61 @@
   <head>
     <meta charset="utf-8">
     <title> AI or You </title>
+
+    <style media="screen">
+      .start {
+        visibility: hidden;
+      }
+    </style>
   </head>
-  <body>
-    
+  <body align="middle" bgcolor="black"><font color="white" face="courier new">
+    <script type="text/javascript">
+      function ToWork() {
+        document.getElementById("front").style.visibility = "visible";
+        document.getElementById("ai").style.visibility = "visible";
+        document.getElementById("enter").style.visibility = "visible";
+    }
+
+      function Entrance() {
+        document.getElementById("no_trust").style.visibility = "visible";
+        document.getElementById("trust").style.visibility = "visible";
+          //make an if statement
+        document.getElementById("watson").style.visibility = "visible";
+      }
+
+      function Meet() {
+
+      }
+
+      // function () {
+      //   document.getElementById("").style.visibility = "visible";
+      //   document.getElementById("").style.visibility = "visible";
+      //   document.getElementById("").style.visibility = "visible";
+      // }
+
+    </script>
+
+    <p> Ok, we don't have a lot of time. First we need to get to the AutoMate building where Arnold was created.
+    It's pretty far, and we have two ways to get there.</p>
+    <input type="button" id="car" onclick="ToWork()" value="self-driving car with gps system">
+    <input type="button" id="hoverboard" onclick="ToWork()" value="hoverboard you control by the mind">
+    <div class='start'>
+
+      <p id='enter'> Nice, we're right outside of AutoMate right now. Our goal is be as subtle as possible and enter the building. </p>
+      <input type="button" id="front" onclick="Entrance()" value="Front Door">
+      <input type="button" id="ai" onclick="Entrance()" value="Door for AIs">
+
+      <p id='watson'>"Hi, my name is Wat-son" <br>
+                    Oh, another AI! It might be worth it to befriend it, but Arnold has a lot of control on the AIs and humans.
+                    There's a chance that Watson could be a spy. What should I do?</p>
+      <input type="button" id="no_trust" onclick="templates/confront.html" value="Don't trust Watson">
+      <input type="button" id="trust" onclick="templates/confront.html" value="Talk to Watson">
+
+    </div>
+    <!--<p id=''> </p>
+    <input type="button" id="" onclick="()" value="">
+    <input type="button" id="" onclick="()" value="">
+  -->
+
   </body>
 </html>
