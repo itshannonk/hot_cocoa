@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+<<<<<<< HEAD
     <title> it's gonna work :) </title>
   </head>
   <!-- CSS Styles -->
@@ -67,5 +68,47 @@
     </div>
 
 
+=======
+    <title> AI or You </title>
+
+  <style media="screen">
+    #playButton {
+      background-color: lightgray;
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 20px;
+      border-style: solid;
+      border-color: maroon;
+      border-width: thick;
+    }
+    input:hover {
+      background-color: yellow;
+    }
+  </style>
+  </head>
+  <body bgcolor="black">
+    <font color="white" face="courier new" size="5">
+    <!-- Link javascript file -->
+    <script type='text/javascript'>
+
+
+    function startGame() {
+      document.getElementById("start").innerHTML = '{{ sentence }}';
+      document.getElementById("playButton").style.visibility = "hidden";
+    }
+
+
+
+    </script>
+
+    <p>AI or You</p>
+    <p>Prevent AI takeover - text-based game</p>
+
+    <!-- this is the intro to the game -->
+    <p id="start">Click on the button to start the game</p>
+    <input type="button" id="playButton" onclick="startGame()" value="Play">
+
+    <p></p>
+>>>>>>> master
   </body>
 </html>
