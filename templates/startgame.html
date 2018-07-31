@@ -2,51 +2,70 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title> AI or You </title>
-
-  <style media="screen">
-    #playButton {
-      background-color: lightgray;
-      padding: 15px 30px;
-      text-align: center;
-      font-size: 20px;
-      border-style: solid;
-      border-color: maroon;
-      border-width: thick;
-      align: right;
-    }
-    #playButton:hover {
-      font-size: 30px;
-    }
-
+    <title> it's gonna work :) </title>
+  </head>
+  <!-- CSS Styles -->
+  <style>
+  .start {
+    visibility: hidden;
   }
   </style>
-  </head>
-  <body onload="beginning()">
-    <!-- function for button and text-->
+  <body>
     <script type='text/javascript'>
+      // make button disapear
+      function Location() {
+        document.getElementById("chica").style.visibility = "visible";
+        document.getElementById("location").style.visibility = "visible";
+        document.getElementById("why").style.visibility = "visible";
+      }
 
-    function beginning(){
-      document.getElementById("player_name").style.visibility = "hidden";
-    }
-    function startGame() {
-      document.getElementById("start").innerHTML = "What is your name?";
-      document.getElementById("playButton").style.visibility = "hidden";
-      document.getElementById("player_name").style.visibility = "visible";
-    }
+      function Specific() {
+        document.getElementById("chicken").style.visibility = "visible";
+        document.getElementById("specific").style.visibility = "visible";
+      }
 
+      function Interrupt() {
+        document.getElementById("specific").style.visibility = "visible";
+        document.getElementById("interrupt").style.visibility = "visible";
+        document.getElementById("ontime").style.visibility = "visible";
+        document.getElementById("explain").style.visibility = "visible";
+      }
 
+      function Explain() {
+        document.getElementById("introduce").style.visibility = "visible";
+        document.getElementById("takeover").style.visibility = "visible";
+        document.getElementById("whyme").style.visibility = "visible";
+        document.getElementById("imin").style.visibility = "visible";
+      }
 
     </script>
 
-    <h1>AI or You</h1>
-    <h3>Prevent AI takeover - a text-based game</h3>
+    <!-- Ai asks user for name -->
+    <p> hello. what is your name? </p>
+    <input type="button" id="name" onclick="Location()" value="name">
+    <div class='start'>
 
-    <!-- this is the intro to the game: made the button and text for player name -->
-    <p id="start">Click on the button to start the game</p>
-    <input type="button" id="playButton" onclick="startGame()" value="Play">
-    <input type="text" id="player_name" value="">
+      <!-- Ai asks user for location -->
+      <p id='chica'> where are you right now? </p>
+      <input type="button" id='why' onclick="Specific()" value="why?">
+      <input type="button" id='location' onclick="Specific()" value="location">
 
-    <p id="playerName"> {{playerName}}</p>
+      <!-- Ai asks to be specific -->
+      <p id='chicken'> pls be more specific </p>
+      <input type="button" id="specific" onclick="setTimeout(Interrupt, 100)" value="who are you?">
+
+      <!-- Transmission is interrupted -->
+      <p id='interrupt'> *the transmission has been interrupted* </p>
+      <p id='ontime'> I'm so glad I got to you on time! You're my only hope! </p>
+      <input type="button" id="explain" onclick="Explain()" value="what's going on?">
+
+      <!-- Good AI explains plot to the user -->
+      <p id='introduce'> I forgot to introduce myself! My name is _____ and I'm a form of artificial intelligence. </p>
+      <p id='takeover'> Ever since the boom of techology, AI has been collecting information... </p>
+      <input type="button" id="whyme" onclick="Explain()" value="why me?">
+      <input type="button" id="imin" onclick="Explain()" value="I'm in!">
+    </div>
+
+
   </body>
 </html>
