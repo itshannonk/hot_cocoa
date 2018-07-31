@@ -2,8 +2,6 @@
 import webapp2
 import jinja2
 import os
-import json
-from aigame_model import Player
 
 variable = True
 # Create Jinja environment templates
@@ -12,27 +10,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-class
->>>>>>> 48eec8e13206e03003c1f92b98419d748aafa929
-
-dict_names = {'playerName': save_player_name,
-
-<<<<<<< HEAD
->>>>>>> fde7ae323752633f6149aa554c7451440e7ec91b
-=======
-            }
-=======
-
-
->>>>>>> master
->>>>>>> 48eec8e13206e03003c1f92b98419d748aafa929
->>>>>>> master
 # First game page
 class StartGame(webapp2.RequestHandler):
     def get(self):
