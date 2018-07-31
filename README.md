@@ -1,4 +1,9 @@
 # hot_cocoa
+<<<<<<< HEAD
+hey team
+did it work
+no
+=======
 We're making a text-based game about artificial intelligence
 taking over the world.
 
@@ -13,3 +18,4 @@ To stay organized, we have made a central python page (main.py)
 and 4 others. The 4 other webpages contain the functions the
 functions that make the part of the game work (decisions made
 by the user).
+>>>>>>> master

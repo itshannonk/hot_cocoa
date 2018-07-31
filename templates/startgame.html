@@ -19,12 +19,20 @@
     }
   </style>
   </head>
+<<<<<<< HEAD
   <body bgcolor="black">
     <font color="white" face="courier new" size="5">
     <!-- Link javascript file -->
     <script type='text/javascript'>
 
 
+=======
+  <center><body valign="middle" bgcolor="black">
+    <font color="white" face="courier new">
+    <!-- function for button and text-->
+    <script type='text/javascript'>
+
+>>>>>>> 1c569230d99918fb07597002189d1ec8632dce88
     function startGame() {
       document.getElementById("start").innerHTML = '{{ sentence }}';
       document.getElementById("playButton").style.visibility = "hidden";
@@ -33,14 +41,34 @@
 
 
     </script>
+<<<<<<< HEAD
 
     <p>AI or You</p>
     <p>Prevent AI takeover - text-based game</p>
+=======
+    <a href="/entrance">Option 1</a>
+    <a href="#"></a>
+    <h1>AI or You</h1>
+    <h3>Prevent AI takeover - a text-based game</h3>
+>>>>>>> 1c569230d99918fb07597002189d1ec8632dce88
 
-    <!-- this is the intro to the game -->
-    <p id="start">Click on the button to start the game</p>
+    <!-- this is the intro to the game: made the button and text for player name -->
+    <p id="start">Click the play button to start the game</p>
     <input type="button" id="playButton" onclick="startGame()" value="Play">
+<<<<<<< HEAD
 
     <p></p>
   </body>
+=======
+    <form action="/startgame" method="post">
+      <input type="text" name="username" value="">
+      <input type="submit" id="submitButton" value="submit">
+    </form>
+  {% if playerName != "" %}
+  <p id="playerName"> {{playerName}}</p>
+  {% endif %}
+
+</font>
+</body></center>
+>>>>>>> 1c569230d99918fb07597002189d1ec8632dce88
 </html>

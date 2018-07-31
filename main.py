@@ -32,6 +32,16 @@ class StartGame(webapp2.RequestHandler):
         # Render page using template
         self.response.write(MainPageTemp.render(sentence=sentence))
 
+    def post(self):
+        MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/startgame.html')
+
+        username = self.request.get('username')
+
+        the_variable_dict = {'playerName': username}
+
+        self.response.write(MainPageTemp.render(the_variable_dict))
+
+
 # Second game page
 class Entrance(webapp2.RequestHandler):
     def get(self):
