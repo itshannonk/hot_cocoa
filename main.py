@@ -15,13 +15,9 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
-        MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/game1.html')
+        MainPageTemp = JINJA_ENVIRONMENT.get_template('templates/startgame.html')
 
-        dicti = {'number': 0}
-        for i in range(5):
-            dicti['number'] = i
-            # Render page using template
-            self.response.write(MainPageTemp.render(dicti))
+        self.response.write(MainPageTemp.render())
 
 # Second game page
 class SecondPage(webapp2.RequestHandler):
