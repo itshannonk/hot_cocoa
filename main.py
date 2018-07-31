@@ -10,6 +10,11 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> fde7ae323752633f6149aa554c7451440e7ec91b
 # First game page
 class StartGame(webapp2.RequestHandler):
     def get(self):
