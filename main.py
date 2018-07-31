@@ -12,7 +12,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 # FUNCTIONS
-# convert text into json# JSON maker function
+# convert text into json# JSON maker function 
 def makeJSON(string):
     js_value = json.dumps(string)
     js_value = (json.dumps(string)
