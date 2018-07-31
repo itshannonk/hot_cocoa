@@ -23,13 +23,10 @@
   }
   </style>
   </head>
-  <body onload="beginning()">
+  <center><body valign="middle" bgcolor="black">
+    <font color="white" face="courier new">
     <!-- function for button and text-->
     <script type='text/javascript'>
-
-    function beginning(){
-      document.getElementById("player_name").style.visibility = "hidden";
-    }
 
     function startGame() {
       document.getElementById("start").innerHTML = "What is your name?";
@@ -41,16 +38,20 @@
 
     </script>
 
-    <h1>AI or You</h1>
-    <h3>Prevent AI takeover - a text-based game</h3>
+    <font size=8 <p>AI or You</p></font>
+    <p>Prevent AI takeover - a text-based game</h3>
 
     <!-- this is the intro to the game: made the button and text for player name -->
-    <p id="start">Click on the button to start the game</p>
+    <p id="start">Click the play button to start the game</p>
     <input type="button" id="playButton" onclick="startGame()" value="Play">
-    <input type="text" id="player_name" value="">
-    <input type="submit" id="" value="submit">
+    <form action="/startgame" method="post">
+      <input type="text" name="username" value="">
+      <input type="submit" id="submitButton" value="submit">
+    </form>
+  {% if playerName != "" %}
+  <p id="playerName"> {{playerName}}</p>
+  {% endif %}
 
-
-    <p id="playerName"> {{playerName}}</p>
-  </body>
+</font>
+</body></center>
 </html>
