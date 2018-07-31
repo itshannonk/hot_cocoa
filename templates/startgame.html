@@ -68,4 +68,56 @@
 
 
   </body>
+    <title> AI or You </title>
+
+  <style media="screen">
+    #playButton {
+      background-color: lightgray;
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 20px;
+      border-style: solid;
+      border-color: maroon;
+      border-width: thick;
+      align: right;
+    }
+    #playButton:hover {
+      font-size: 30px;
+    }
+
+
+  }
+  </style>
+  </head>
+  <center><body valign="middle" bgcolor="black">
+    <font color="white" face="courier new">
+    <!-- function for button and text-->
+    <script type='text/javascript'>
+
+    function startGame() {
+      document.getElementById("start").innerHTML = "What is your name?";
+      document.getElementById("playButton").style.visibility = "hidden";
+      document.getElementById("player_name").style.visibility = "visible";
+    }
+
+
+  {% if playerName != "" %}
+  <p id="playerName"> {{playerName}}</p>
+  {% endif %}
+    </script>
+    <a href="/entrance">Option 1</a>
+    <a href="#"></a>
+    <h1>AI or You</h1>
+    <h3>Prevent AI takeover - a text-based game</h3>
+
+    <!-- this is the intro to the game: made the button and text for player name -->
+    <p id="start">Click the play button to start the game</p>
+    <input type="button" id="playButton" onclick="startGame()" value="Play">
+    <form action="/startgame" method="post">
+      <input type="text" name="username" value="">
+      <input type="submit" id="submitButton" value="submit">
+    </form>
+
+</font>
+</body></center>
 </html>
