@@ -2,6 +2,72 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <title> it's gonna work :) </title>
+  </head>
+  <!-- CSS Styles -->
+  <style>
+  .start {
+    visibility: hidden;
+  }
+  </style>
+  <body>
+    <script type='text/javascript'>
+      // make button disapear
+      function Location() {
+        document.getElementById("chica").style.visibility = "visible";
+        document.getElementById("location").style.visibility = "visible";
+        document.getElementById("why").style.visibility = "visible";
+      }
+
+      function Specific() {
+        document.getElementById("chicken").style.visibility = "visible";
+        document.getElementById("specific").style.visibility = "visible";
+      }
+
+      function Interrupt() {
+        document.getElementById("specific").style.visibility = "visible";
+        document.getElementById("interrupt").style.visibility = "visible";
+        document.getElementById("ontime").style.visibility = "visible";
+        document.getElementById("explain").style.visibility = "visible";
+      }
+
+      function Explain() {
+        document.getElementById("introduce").style.visibility = "visible";
+        document.getElementById("takeover").style.visibility = "visible";
+        document.getElementById("whyme").style.visibility = "visible";
+        document.getElementById("imin").style.visibility = "visible";
+      }
+
+    </script>
+
+    <!-- Ai asks user for name -->
+    <p> hello. what is your name? </p>
+    <input type="button" id="name" onclick="Location()" value="name">
+    <div class='start'>
+
+      <!-- Ai asks user for location -->
+      <p id='chica'> where are you right now? </p>
+      <input type="button" id='why' onclick="Specific()" value="why?">
+      <input type="button" id='location' onclick="Specific()" value="location">
+
+      <!-- Ai asks to be specific -->
+      <p id='chicken'> pls be more specific </p>
+      <input type="button" id="specific" onclick="setTimeout(Interrupt, 100)" value="who are you?">
+
+      <!-- Transmission is interrupted -->
+      <p id='interrupt'> *the transmission has been interrupted* </p>
+      <p id='ontime'> I'm so glad I got to you on time! You're my only hope! </p>
+      <input type="button" id="explain" onclick="Explain()" value="what's going on?">
+
+      <!-- Good AI explains plot to the user -->
+      <p id='introduce'> I forgot to introduce myself! My name is _____ and I'm a form of artificial intelligence. </p>
+      <p id='takeover'> Ever since the boom of techology, AI has been collecting information... </p>
+      <input type="button" id="whyme" onclick="Explain()" value="why me?">
+      <input type="button" id="imin" onclick="Explain()" value="I'm in!">
+    </div>
+
+
+  </body>
     <title> AI or You </title>
 
   <style media="screen">
@@ -35,18 +101,14 @@
     }
 
 
-
+  {% if playerName != "" %}
+  <p id="playerName"> {{playerName}}</p>
+  {% endif %}
     </script>
-<<<<<<< HEAD
-
-    <font size=8 <p>AI or You</p></font>
-    <p>Prevent AI takeover - a text-based game</h3>
-=======
     <a href="/entrance">Option 1</a>
     <a href="#"></a>
     <h1>AI or You</h1>
     <h3>Prevent AI takeover - a text-based game</h3>
->>>>>>> 48eec8e13206e03003c1f92b98419d748aafa929
 
     <!-- this is the intro to the game: made the button and text for player name -->
     <p id="start">Click the play button to start the game</p>
@@ -55,9 +117,6 @@
       <input type="text" name="username" value="">
       <input type="submit" id="submitButton" value="submit">
     </form>
-  {% if playerName != "" %}
-  <p id="playerName"> {{playerName}}</p>
-  {% endif %}
 
 </font>
 </body></center>
