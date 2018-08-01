@@ -9,16 +9,17 @@
   .start {
     visibility: hidden;
   }
-
+  .introblock {
+    margin: 250px
+  }
   #playButton {
     background-color: lightgray;
     padding: 15px 30px;
     text-align: center;
     font-size: 20px;
     border-style: solid;
-    border-color: maroon;
+    /* border-color: maroon; */
     border-width: thick;
-    align: right;
   }
   #playButton:hover {
     font-size: 30px;
@@ -28,86 +29,152 @@
   </style>
 </head>
 <center><body valign="middle" bgcolor="black"><font color="white" face="courier new">
-    <script type='text/javascript' >
+    <script type='text/javascript'>
       // make button disapear
       function startGame() {
         document.getElementById("start").innerHTML = "What is your name?";
         document.getElementById("playButton").style.visibility = "hidden";
-        document.getElementById("player_name").style.visibility = "visible";
+        document.getElementById("username").style.visibility = "visible";
+        document.getElementById("submitButton").style.visibility = "visible";
       }
 
+      // document.getElementById("player_name").style.visibility = "visible";
 
-    {% if playerName != "" %}
-    <p id="playerName"> {{playerName}}</p>
-    {% endif %}
-
-      function Location() {
-        document.getElementById("chica").style.visibility = "visible";
-        document.getElementById("location").style.visibility = "visible";
-        document.getElementById("why").style.visibility = "visible";
-      }
-
-      function Specific() {
-        document.getElementById("chicken").style.visibility = "visible";
-        document.getElementById("specific").style.visibility = "visible";
-      }
-
-      function Interrupt() {
-        document.getElementById("specific").style.visibility = "visible";
-        document.getElementById("interrupt").style.visibility = "visible";
-        document.getElementById("ontime").style.visibility = "visible";
-        document.getElementById("explain").style.visibility = "visible";
-      }
-
-      function Explain() {
-        document.getElementById("introduce").style.visibility = "visible";
-        document.getElementById("takeover").style.visibility = "visible";
-        document.getElementById("whyme").style.visibility = "visible";
-        document.getElementById("imin").style.visibility = "visible";
-      }
+    // {% if playerName != "" %}
+    // <p id="playerName"> {{playerName}}</p>
+    // {% endif %}
 
     </script>
 
     <!-- this is the intro to the game: made the button and text for player name -->
-    <h1>AI or You</h1>
-    <h3>Prevent AI takeover - a text-based game</h3>
+    <div class="introblock">
+      <div>
 
-    <p id="start">Click the play button to start the game</p>
-    <input type="button" id="playButton" onclick="startGame()" value="Play">
-    <form action="/startgame" method="post">
-      <input type="text" name="username" value="">
-      <input type="submit" id="submitButton" value="submit">
+    <font size=50>
+    <head>
+    <style>
+    body {
+      background: black;
+      color: white;
+    }
 
-    <!-- Ai asks user for name -->
-    <p> hello. what is your name? </p>
-    <input type="button" id="name" onclick="Location()" value="name">
-    <div class='start'>
+    #messenger {
+    }
 
-      <!-- Ai asks user for location -->
-      <p id='chica'> where are you right now? </p>
-      <input type="button" id='why' onclick="Specific()" value="why?">
-      <input type="button" id='location' onclick="Specific()" value="location">
+    </style>
 
-      <!-- Ai asks to be specific -->
-      <p id='chicken'> pls be more specific </p>
-      <input type="button" id="specific" onclick="setTimeout(Interrupt, 100)" value="who are you?">
 
-      <!-- Transmission is interrupted -->
-      <p id='interrupt'> *the transmission has been interrupted* </p>
-      <p id='ontime'> I'm so glad I got to you on time! You're my only hope! </p>
-      <input type="button" id="explain" onclick="Explain()" value="what's going on?">
+    <div id="messenger"></div>
 
-      <!-- Good AI explains plot to the user -->
-      <p id='introduce'> I forgot to introduce myself! My name is _____ and I'm a form of artificial intelligence. </p>
-      <p id='takeover'> Ever since the boom of techology, AI has been collecting information... </p>
-      <input type="button" id="whyme" onclick="Explain()" value="why me?">
-      <input type="button" id="imin" onclick="Explain()" value="I'm in!">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+
+
+
+    <script>
+
+      var Messenger = function(el){
+      'use strict';
+      var m = this;
+
+      m.init = function(){
+        m.codeletters = "&#*+%?£@§$";
+        m.message = 0;
+        m.current_length = 0;
+        m.fadeBuffer = false;
+        m.messages = [
+          'AI or You?'
+        ];
+
+        setTimeout(m.animateIn, 100);
+      };
+
+      m.generateRandomString = function(length){
+        var random_text = '';
+        while(random_text.length < length){
+          random_text += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
+        }
+
+        return random_text;
+      };
+
+      m.animateIn = function(){
+        if(m.current_length < m.messages[m.message].length){
+          m.current_length = m.current_length + 2;
+          if(m.current_length > m.messages[m.message].length) {
+            m.current_length = m.messages[m.message].length;
+          }
+
+          var message = m.generateRandomString(m.current_length);
+          $(el).html(message);
+
+          setTimeout(m.animateIn, 20);
+        } else {
+          setTimeout(m.animateFadeBuffer, 20);
+        }
+      };
+
+      m.animateFadeBuffer = function(){
+        if(m.fadeBuffer === false){
+          m.fadeBuffer = [];
+          for(var i = 0; i < m.messages[m.message].length; i++){
+            m.fadeBuffer.push({c: (Math.floor(Math.random()*12))+1, l: m.messages[m.message].charAt(i)});
+          }
+        }
+
+        var do_cycles = true;
+        var message = '';
+
+        for(var i = 0; i < m.fadeBuffer.length; i++){
+          var fader = m.fadeBuffer[i];
+          if(fader.c > 0){
+            do_cycles = true;
+            fader.c--;
+            message += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
+          } else {
+            message += fader.l;
+          }
+        }
+
+        $(el).html(message);
+
+        if(do_cycles === true){
+          setTimeout(m.animateFadeBuffer, 85);
+        } else {
+          setTimeout(m.cycleText, 2000);
+        }
+      };
+
+      m.cycleText = function(){
+        m.message = m.message + 1;
+        if(m.message >= m.messages.length){
+          m.message = 0;
+        }
+
+        m.current_length = 0;
+        m.fadeBuffer = false;
+        $(el).html('');
+
+        setTimeout(m.animateIn, 200);
+      };
+
+      m.init();
+    }
+
+    console.clear();
+    var messenger = new Messenger($('#messenger'));
+
+    </script>
+    </head>
+
+    <p></font> <font size=5>| Prevent AI takeover |</p></font>
+
+    <p id="start"></p>
+    <input type="button" id="playButton" onclick="startGame();" value="Play">
+    <form action="/entrance" method="post">
+      <input type="text" id="username" name="username" value="" style="visibility:hidden;">
+      <input type="submit" id="submitButton" value="submit" style="visibility:hidden;">
     </div>
-
-    <a href="/entrance">Option 1</a>
-    <a href="#"></a>
-
-
+    </div>
     </form>
 
 </font>
