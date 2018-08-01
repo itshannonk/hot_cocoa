@@ -5,7 +5,7 @@
     <title> AI or You </title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
-      <!-- CSS Styles -->
+  <!-- CSS Styles -->
   <style>
 
   /* turn upcoming text invisible */
@@ -13,6 +13,12 @@
     visibility: hidden;
   }
 
+  #to_confront {
+    color: maroon;
+    font-size: 25px;
+    /*border-style: double;
+    border-color: maroon;*/
+  }
   /* body styling */
   #body {
     font-family: 'Press Start 2P', cursive;
@@ -24,11 +30,13 @@
 
   /* border styling */
   .around {
-    border-style: dashed;
-    border-width: 3px;
-    padding: 10px;
-    width: 50%;
-    border-color: white;
+    /* padding-bottom: 30px; */
+    border-top-style: dashed;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+    width: 80%;
+    margin-top: 30px;
+    padding-top: 20px;
   }
   /* button styling */
   .button {
@@ -46,32 +54,44 @@
   #title {
     margin: 70px;
     letter-spacing: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
+  #gif {
+    width: 10%;
+
+  }
 
   #appear {
     padding-top: 0px;
   }
 
-  #progress {
-    visibility: visible;
-  }
-
   #container {
-    width: 400px;
-    height: 50px;
+    width: 50px;
+    height: 500px;
     position: relative;
-    border-style: dashed;
-    border-color: white;
-    border-width: 2px;
+    border: 2px dashed black;
     margin-top: 40px;
+    background-color: white;
   }
   #animate {
     width: 50px;
-    height: 50px;
+    height: 250px;
     position: absolute;
-    background: white;
+    background: black;
+  }
+
+  /* progress bar stuff */
+  #sideprogress {
+    width: 90%;
+    float:left;
+  }
+
+  #progress {
+    visibility: visible;
+    width: 10%;
+    float: left;
+    padding-top: 150px;
   }
   </style>
 </head>
@@ -83,100 +103,144 @@
       //{% if playerName != "" %}
         //<p id="playerName"> {{playerName}}</p>
       //{% endif %}
-      i = 0;
 
-      function Specific() {
-        document.getElementById("chicken").style.visibility = "visible";
-        let txt = document.getElementById("chicken").innerHTML
-          document.getElementById("chicken").innerHTML = "";
-        typeWriter(txt)
-        document.getElementById("specific").style.visibility = "visible";
-        document.getElementById("pleasediv").style.visibility = "visible";
+      function Location() {
+        document.getElementById("pleaseborder").style.visibility = "visible";
+        // creat type writer effect
+        let txt = document.getElementById("chicken").innerHTML;
+        document.getElementById("chicken").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'chicken');
+        Decrease(); // update progress bar
+        // hide other button option
+        document.getElementById('suspicious').style.visibility = "hidden";
+      }
+
+      function Suspicious() {
+        document.getElementById("pleaseborder").style.visibility = "visible";
+        // create type writer effect
+        let txt = document.getElementById("chicken").innerHTML;
+        document.getElementById("chicken").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'chicken');
+        Increase(); // update progress bar
+        document.getElementById('location').style.visibility = "hidden";
       }
 
       function Interrupt() {
-        document.getElementById("interrupt").style.visibility = "visible";
-        document.getElementById("explain").style.visibility = "visible";
-        document.getElementById("intdiv").style.visibility = "visible";
+        document.getElementById("transmissionborder").style.visibility = "visible";
+        let txt = document.getElementById("interrupt").innerHTML; // type writer
+        document.getElementById("interrupt").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'interrupt');
       }
 
       function Explain() {
-        document.getElementById("introduce").style.visibility = "visible";
-        document.getElementById("whyme").style.visibility = "visible";
-        document.getElementById("imin").style.visibility = "visible";
+        document.getElementById("explainborder").style.visibility = "visible";
+        let txt = document.getElementById("introduce").innerHTML; // type writer
+        document.getElementById("introduce").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'introduce');
       }
 
       function Protagonist() {
-        document.getElementById('mission').innerHTML = 'Because you\'re the last human that isn\'t controlled by AI! <br> You need to save yourself and the rest of the world!'
-        document.getElementById('mission').style.visibility = "visible";
+        document.getElementById('missionborder').style.visibility = 'visible';
+        // type writer
+        let txt = 'Because you\'re the last human that isn\'t controlled by AI! You need to save yourself and the rest of the world!';
+        i = 0;
+        typeWriter(txt, 'mission');
+        // hide other button option
         document.getElementById("imin").style.visibility = "hidden";
-        document.getElementById("missdiv").style.visibility = "visible";
-        document.getElementById("continue").style.visibility = "visible";
       }
 
       function Great() {
-        document.getElementById('mission').innerHTML = "I knew you'd say that! Let's get started! <br> ";
-        document.getElementById('mission').style.visibility = "visible";
+        document.getElementById('missionborder').style.visibility = "visible";
+        // type writer
+        let txt = "I knew you'd say that! Let's get started!";
+        i = 0;
+        typeWriter(txt, 'mission');
+        // hide other button option
         document.getElementById("whyme").style.visibility = "hidden";
-        document.getElementById("missdiv").style.visibility = "visible";
-        document.getElementById("continue").style.visibility = "visible";
       }
 
-      function typeWriter(txt) {
+      // Type writer effect function
+      function typeWriter(txt, id) {
         if (i < txt.length) {
-          document.getElementById("chicken").innerHTML += txt.charAt(i);
+          document.getElementById(id).innerHTML += txt.charAt(i);
           i++;
-          setTimeout(typeWriter, 70, txt);
+          setTimeout(typeWriter, 60, txt, id);
         }
       }
+
+      // Decrease progress bar
+      function Decrease() {
+        let progress = document.getElementById('animate')
+        progress.style.height = progress.offsetHeight + 25 + 'px'
+      }
+
+      // Increase progress bar
+      function Increase() {
+        let progress = document.getElementById('animate')
+        progress.style.height = progress.offsetHeight -  25 + 'px'
+
+      }
     </script>
-    <font size=50><p id='title'>AI or You</font> <font size=5>| Prevent AI takeover</p></font>
 
-    <!-- Ai asks user for location -->
-    <div id='appear'>
-    <p> where are you right now? </p>
-    <input class='button' type="button" onclick="Specific()" value="why do you want to know?">
-    <input class='button' type="button" onclick="Specific()" value="location">
-    </div>
-    <p> ------------------------------------------------------------------- </p>
-    <div class='start'>
+    <!-- START OF HTML -->
+    <font size=50><p id='title'>AI or You</font> <font size=5>| Prevent an AI Takeover</p></font>
+    <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
 
-      <!-- Ai asks to be specific -->
-      <div class='around'>
-      <p id='chicken'> please be more specific </p>
-      <input class='button' type="button" id="specific" onclick="Interrupt()" value="who are you?">
-      <p id='pleasediv'> ---------------------------------------------- </p>
-      </div>
-
-      <!-- Transmission is interrupted -->
-      <p id='interrupt'> *the transmission has been interrupted* <br>
-      I'm so glad I got to you on time! You're my only hope! </p>
-      <input class='button' type="button" id="explain" onclick="Explain()" value="what's going on?">
-      <p id='intdiv'> ------------------------------------------------------------------- </p>
-
-      <!-- Good AI explains plot to the user -->
-      <p id='introduce'> I forgot to introduce myself! My name is _____ and I'm a form of <br> artificial intelligence.
-        Ever since the boom of techology, <br> AI has been collecting information about humans
-        and are soon <br> ready to execute their plan. They'll destroy the planet if we <br> don't stop
-        them! I need your help, please! <br> I was lucky to get away from them the first time </p>
-      <input class='button' type="button" id="whyme" onclick="Protagonist()" value="why me?">
-      <input class='button' type="button" id="imin" onclick="Great()" value="I'm in!">
-      <p id='missdiv'> ------------------------------------------------------------------- </p>
-
-      <!-- This response depends on what the user chooses above -->
-      <p id='mission'> </p>
-      <form class="" action="/entrance" method="post">
-        <button class='button' id='continue' type="sumbit" action='/entrance.html'> continue </button>
-      </form>
-    </div>
-
+    <!-- Progress bar -->
     <div id='progress'>
+      <p> progress bar </p>
       <div id='container'>
         <div id='animate'></div>
       </div>
+      <p> progress bar </p>
     </div>
 
-      </font>
+    <!-- Ai asks user for location -->
+    <div id='sideprogress'>
+      <div id='appear'>
+        <p> where are you right now? </p>
+        <input class='button' type="button" id='suspicious' onclick="Suspicious()" value="why do you want to know?">
+        <input class='button' type="button" id='location' onclick="Location()" value="share location">
+      </div>
+
+      <div class='start'>
+
+      <!-- Ai asks to be specific -->
+        <div class='around' id='pleaseborder'>
+          <p id='chicken'> please be more specific </p>
+          <input class='button' type="button" id="specific" onclick="Interrupt()" value="who are you?">
+        </div>
+
+      <!-- Transmission is interrupted -->
+        <div class='around' id='transmissionborder'>
+          <p id='interrupt'> *the transmission has been interrupted*
+            I'm so glad I got to you on time! You're my only hope! </p>
+          <input class='button' type="button" id="explain" onclick="Explain()" value="what's going on?">
+        </div>
+
+      <!-- Good AI explains plot to the user -->
+        <div class='around' id='explainborder'>
+          <p id='introduce'> I forgot to introduce myself! My name is Rolo and I'm a form of artificial intelligence.
+            Ever since the boom of techology, Arnold, the evil AI has been collecting information about humans and are soon ready to execute their plan.
+            They'll destroy the planet if we don't stop them!
+             I need your help, please! I was lucky to get away from them the first time! </p>
+          <input class='button' type="button" id="whyme" onclick="Protagonist()" value="why me?">
+          <input class='button' type="button" id="imin" onclick="Great()" value="I'm in!">
+        </div>
+
+        <!-- This response depends on what the user chooses above -->
+        <div class='around' id='missionborder'>
+          <p id='mission'> </p>
+          <form class="" action="/entrance" method="post">
+          <button class='button' id='continue' type="sumbit" action='/entrance.html'> continue </button>
+        </div>
+        </form>
+      </div>
+    </div>
     </body>
   </center>
 </html>

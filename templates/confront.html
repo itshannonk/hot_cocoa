@@ -9,6 +9,11 @@
         visibility: hidden;
       }
 
+      input[type="button"]:disabled {
+        background-color: #ddd;
+        color: #777;
+      }
+
       #to_confront {
         color: maroon;
         font-size: 25px;
@@ -20,35 +25,56 @@
   <body align="middle" bgcolor="black"><font color="white" face="courier new">
     <script type="text/javascript">
 
+      // function inOffice() {
+      //   document.getElementById("office").disabled = true;
+      //   document.getElementById("closet").style.visibility = "visible";
+      //   document.getElementById("office_text").style.visibility = "visible";
+      //   document.getElementById("inOffice").style.visibility = "visible";
+      // }
+
       function inOffice() {
+        document.getElementById("office").disabled = true;
         document.getElementById("closet").style.visibility = "hidden";
         document.getElementById("office_text").style.visibility = "visible";
-        document.getElementById("arnold").style.visibility = "visible";
-        document.getElementById("unplug").style.visibility = "visible";
-        document.getElementById("question").style.visibility = "visible";
+        document.getElementById("closet2").style.visibility = "visible";
       }
 
       function inCloset() {
+        document.getElementById("closet").disabled = true;
         document.getElementById("office").style.visibility = "hidden";
         document.getElementById("closet_text").style.visibility = "visible";
+        document.getElementById("ready").style.visibility = "visible";
+      }
+
+      function inCloset2() {
+        document.getElementById("closet2").disabled = true;
+        document.getElementById("closet_text").style.visibility = "visible";
+        document.getElementById("ready").style.visibility = "visible";
+      }
+
+      function ready() {
+        document.getElementById("ready").disabled = true;
         document.getElementById("arnold").style.visibility = "visible";
         document.getElementById("unplug").style.visibility = "visible";
         document.getElementById("question").style.visibility = "visible";
       }
 
       function goUnplug() {
+        document.getElementById("unplug").disabled = true;
         document.getElementById("question").style.visibility = "hidden";
         document.getElementById("unplug_text").style.visibility = "visible";
         document.getElementById("to_confront").style.visibility = "visible";
       }
 
       function askQs() {
+        document.getElementById("question").disabled = true;
         document.getElementById("unplug").style.visibility = "hidden";
         document.getElementById("q_text").style.visibility = "visible";
         document.getElementById("to_confront").style.visibility = "visible";
       }
 
     </script>
+    <font size=50><p>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
 <!-- decides how to look for  -->
     <p> Now that we're inside AutoMate and have gotten past other AIs, <br>
         we can finally look for Arnold! <br>
@@ -59,24 +85,36 @@
     <div class='start'>
 
       <!-- if player chose OFFICES -->
-      <p id="office_text"> player chose office </p>
+      <p id="office_text"> Ok, I'm going through the doors... <br><br>
+                          Another AI: Can I see your ID? <br><br>
+                          Rolo: Uh, yeah, here... <br><br>
+                          Another AI: ... <br>
+                          You don't have access to this part of the building. <br>
+                          You need to go back outside. <br><br>
+                          Oh no, this reroute cost us! Now, our presence is more suspicious. </p>
+      <input type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
+
       <!-- if player chose CLOSET -->
-      <p id="closet_text"> player chose closet </p>
+      <p id="closet_text"> Wow, the closet is a very low-key place. <br>
+                          I wonder what's in the back... <br><br>
+                          Check it out! There's a tunnel in here! <br>
+                          Let's go in! Ready? </p>
+      <input type="button" id="ready" onclick="ready()" value="ready">
 
 <!-- when player meets Arnold (Evil AI) & [fyi Rolo is the Good AI]-->
-      <p id='arnold'> "We meet again, Rolo." <br>
+      <p id='arnold'> "We meet again, Rolo." <br><br>
                     It's so dark in here...but is that Arnold's voice? <br>
                     I'm going to go closer. <br>
                     . . . <br>
                     Arnold is right in the center of the room, <br>
-                    plugged into AutoMate's security system. <br>
+                    plugged into AutoMate's security system. <br><br>
                     That's how it's controlling other people and AIs. <br>
                     We walked right into it with no plan...</p>
-      <input type="button" id="unplug" onclick="goUnplug()" value="Unplug it!">
-      <input type="button" id="question" onclick="askQs()" value="Ask it questions!">
+      <input type="button" id="unplug" onclick="goUnplug()" value="unplug it!">
+      <input type="button" id="question" onclick="askQs()" value="ask it questions!">
 
       <!-- if player chose UNPLUG -->
-      <p id="unplug_text"> player chose unplug </p>
+      <p id="unplug_text">  </p>
       <!-- if player chose QUESTIONS -->
       <p id="q_text"> player chose questions </p>
 
