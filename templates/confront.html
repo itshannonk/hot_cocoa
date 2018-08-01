@@ -25,13 +25,6 @@
   <body align="middle" bgcolor="black"><font color="white" face="courier new">
     <script type="text/javascript">
 
-      // function inOffice() {
-      //   document.getElementById("office").disabled = true;
-      //   document.getElementById("closet").style.visibility = "visible";
-      //   document.getElementById("office_text").style.visibility = "visible";
-      //   document.getElementById("inOffice").style.visibility = "visible";
-      // }
-
       function inOffice() {
         document.getElementById("office").disabled = true;
         document.getElementById("closet").style.visibility = "hidden";
@@ -43,12 +36,17 @@
         document.getElementById("closet").disabled = true;
         document.getElementById("office").style.visibility = "hidden";
         document.getElementById("closet_text").style.visibility = "visible";
+        document.getElementById("office_text").style.visibility = "visible";
+        document.getElementById("office_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! <br> Let's go in! Ready?"
+
         document.getElementById("ready").style.visibility = "visible";
       }
 
       function inCloset2() {
         document.getElementById("closet2").disabled = true;
         document.getElementById("closet_text").style.visibility = "visible";
+        document.getElementById("office_text").style.visibility = "visible";
+        document.getElementById("closet_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! <br> Let's go in! Ready?"
         document.getElementById("ready").style.visibility = "visible";
       }
 
@@ -95,26 +93,24 @@
       <input type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
 
       <!-- if player chose CLOSET -->
-      <p id="closet_text"> Wow, the closet is a very low-key place. <br>
-                          I wonder what's in the back... <br><br>
-                          Check it out! There's a tunnel in here! <br>
-                          Let's go in! Ready? </p>
+      <p id="closet_text">  </p>
       <input type="button" id="ready" onclick="ready()" value="ready">
 
 <!-- when player meets Arnold (Evil AI) & [fyi Rolo is the Good AI]-->
       <p id='arnold'> "We meet again, Rolo." <br><br>
                     It's so dark in here...but is that Arnold's voice? <br>
                     I'm going to go closer. <br>
-                    . . . <br>
+                    . . . <br><br><br>
                     Arnold is right in the center of the room, <br>
                     plugged into AutoMate's security system. <br><br>
                     That's how it's controlling other people and AIs. <br>
                     We walked right into it with no plan...</p>
+                    
       <input type="button" id="unplug" onclick="goUnplug()" value="unplug it!">
       <input type="button" id="question" onclick="askQs()" value="ask it questions!">
 
       <!-- if player chose UNPLUG -->
-      <p id="unplug_text">  </p>
+      <p id="unplug_text"> unpluggg </p>
       <!-- if player chose QUESTIONS -->
       <p id="q_text"> player chose questions </p>
 
