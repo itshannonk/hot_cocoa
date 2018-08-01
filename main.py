@@ -90,6 +90,17 @@ class Gameover(webapp2.RequestHandler):
 
         self.response.write(GameoverTemp.render())
 
+class Win(webapp2.RequestHandler):
+    def get(self):
+        # Link Handler to webpage
+        WinTemp = JINJA_ENVIRONMENT.get_template('templates/winpage.html')
+        self.response.write(WinTemp.render())
+        # Render page using template
+    def post(self):
+        WinTemp = JINJA_ENVIRONMENT.get_template('templates/winpage.html')
+
+        self.response.write(WinTemp.render())
+
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
     ('/', StartGame),
@@ -98,4 +109,5 @@ app = webapp2.WSGIApplication([
     ('/searching', Searching),
     ('/confront', Confront),
     ('/gameover', Gameover),
+    ('/winpage', Win),
 ], debug=True)
