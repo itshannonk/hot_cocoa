@@ -12,7 +12,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 # FUNCTIONS
-# convert text into json# JSON maker function 
+# convert text into json# JSON maker function
 def makeJSON(string):
     js_value = json.dumps(string)
     js_value = (json.dumps(string)
@@ -41,6 +41,11 @@ class StartGame(webapp2.RequestHandler):
 
         self.response.write(MainPageTemp.render(the_variable_dict))
 
+# Introduction Page
+class Introduction(webapp2.RequestHandler):
+    def get(self):
+        Template = JINJA_ENVIRONMENT.get_template('templates/introduction.html')
+        self.response.write(Template.render())
 
 # Second game page
 class Entrance(webapp2.RequestHandler):
@@ -79,6 +84,7 @@ class Confront(webapp2.RequestHandler):
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
     ('/startgame', StartGame),
+    ('/introduction', Introduction),
     ('/entrance', Entrance),
     ('/watson', Watson),
     ('/searching', Searching),
