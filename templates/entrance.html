@@ -39,13 +39,10 @@
         document.getElementById("car").style.visibility = "hidden";
         document.getElementById("board_text").style.visibility = "visible";
         document.getElementById("go").style.visibility = "visible";
-        // document.getElementById("enter").style.visibility = "visible";
-        // document.getElementById("front").style.visibility = "visible";
-        // document.getElementById("ai").style.visibility = "visible";
       }
 
       function go() {
-        document.getElementById("go").diasbled = true;
+        document.getElementById("go").disabled = true;
         document.getElementById("enter").style.visibility = "visible";
         document.getElementById("front").style.visibility = "visible";
         document.getElementById("ai").style.visibility = "visible";
@@ -55,22 +52,21 @@
         document.getElementById("front").disabled = true;
         document.getElementById("ai").style.visibility = "hidden";
         document.getElementById("front_text").style.visibility = "visible";
-        document.getElementById("watson").style.visibility = "visible";
-        document.getElementById("no_trust").style.visibility = "visible";
-        document.getElementById("trust").style.visibility = "visible";
+        document.getElementById("door").style.visibility = "visible";
       }
 
       function useBack() {
         document.getElementById("ai").disabled = true;
         document.getElementById("front").style.visibility = "hidden";
         document.getElementById("ai_text").style.visibility = "visible";
-        document.getElementById("watson").style.visibility = "visible";
-        document.getElementById("no_trust").style.visibility = "visible";
-        document.getElementById("trust").style.visibility = "visible";
+        document.getElementById("door").style.visibility = "visible";
       }
 
       function door() {
-
+        document.getElementById("door").disabled = true;
+        document.getElementById("watson").style.visibility = "visible";
+        document.getElementById("no_trust").style.visibility = "visible";
+        document.getElementById("trust").style.visibility = "visible";
       }
 
       function noTrust() {
