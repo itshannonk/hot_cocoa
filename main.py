@@ -108,11 +108,9 @@ class Win(webapp2.RequestHandler):
 
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
-    ('/introduction', Introduction),
     ('/', StartGame),
+    ('/introduction', Introduction),
     ('/entrance', Entrance),
-    ('/watson', Watson),
-    ('/searching', Searching),
     ('/confront', Confront),
     ('/gameover', Gameover),
     ('/winpage', Win),
