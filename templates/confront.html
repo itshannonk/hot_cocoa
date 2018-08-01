@@ -29,13 +29,74 @@
         font-size: 15px;
         letter-spacing: 0px;
         margin-top: 10px;
+        text-align: center;
+      }
+
+      /* button styling */
+      .button {
+          font-family: 'Press Start 2P', cursive;
+          background-color: black;
+          color: white;
+          padding: 15px;
+          border-style: double;
+          border-width: 3px;
+          font-weight: lighter;
+          font-size: 10px;
+      }
+
+      /* border styling */
+      .around {
+        border-top-style: dashed;
+        border-bottom-color: white;
+        border-bottom-width: 2px;
+        width: 80%;
+        margin-top: 30px;
+        padding-top: 20px;
+      }
+
+      /* Title spacing */
+      #title {
+        margin: 70px;
+        letter-spacing: 0px;
+        margin-bottom: 10px;
+      }
+
+      /* draw progress bar */
+      #container {
+        width: 50px;
+        height: 500px;
+        position: relative;
+        border: 2px dashed black;
+        margin-top: 40px;
+        background-color: white;
+      }
+      #animate {
+        width: 50px;
+        height: 250px;
+        position: absolute;
+        background: black;
+      }
+
+      /* progress bar stuff */
+      #sideprogress {
+        width: 90%;
+        float:left;
+      }
+
+      #progress {
+        visibility: visible;
+        width: 10%;
+        float: left;
+        padding-top: 150px;
       }
     </style>
   </head>
-  <body id='body' align="middle" bgcolor="black"><font color="white" face="courier new">
+  <center>
+  <body id='body' align="middle" bgcolor="black"><font color="white">
     <script type="text/javascript">
 
       function inOffice() {
+        document.getElementById('officeborder').style.visibility = 'visible';
         document.getElementById("office").disabled = true;
         document.getElementById("closet").style.visibility = "hidden";
         document.getElementById("office_text").style.visibility = "visible";
@@ -43,16 +104,18 @@
       }
 
       function inCloset() {
+        document.getElementById('officeborder').style.visibility = 'visible';
         document.getElementById("closet").disabled = true;
         document.getElementById("office").style.visibility = "hidden";
         document.getElementById("closet_text").style.visibility = "visible";
-        document.getElementById("office_text").style.visibility = "visible";
+        /* document.getElementById("office_text").style.visibility = "visible"; */
         document.getElementById("office_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! <br> Let's go in! Ready?"
 
         document.getElementById("ready").style.visibility = "visible";
       }
 
       function inCloset2() {
+        document.getElementById('closetborder').style.visibility = 'visible';
         document.getElementById("closet2").disabled = true;
         document.getElementById("closet_text").style.visibility = "visible";
         document.getElementById("office_text").style.visibility = "visible";
@@ -61,6 +124,7 @@
       }
 
       function ready() {
+        document.getElementById('arnoldborder').style.visibility = "visible";
         document.getElementById("ready").disabled = true;
         document.getElementById("arnold").style.visibility = "visible";
         document.getElementById("unplug").style.visibility = "visible";
@@ -82,32 +146,48 @@
       }
 
     </script>
-    <font size=50><p>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
-<!-- decides how to look for  -->
-    <p> Now that we're inside AutoMate and have gotten past other AIs, <br>
+    <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
+
+    <!-- Progress bar -->
+    <div id='progress'>
+      <p> progress bar </p>
+      <div id='container'>
+        <div id='animate'></div>
+      </div>
+      <p> progress bar </p>
+    </div>
+
+    <div id='sideprogress'>
+      <!-- decides how to look for  -->
+      <p> Now that we're inside AutoMate and have gotten past other AIs, <br>
         we can finally look for Arnold! <br>
         It seems like there are two places we can go <br>
         to search for a way to know Arnold's location.</p>
-    <input type="button" id="office" onclick="inOffice()" value="AI Offices">
-    <input type="button" id="closet" onclick="inCloset()" value="Janitor's Closet">
-    <div class='start'>
+      <input class='button' type="button" id="office" onclick="inOffice()" value="AI Offices">
+      <input class='button' type="button" id="closet" onclick="inCloset()" value="janitor's closet">
+      <div class='start'>
 
       <!-- if player chose OFFICES -->
-      <p id="office_text"> Ok, I'm going through the doors... <br><br>
+        <div class='around' id='officeborder'>
+          <p id="office_text"> Ok, I'm going through the doors... <br><br>
                           Another AI: Can I see your ID? <br><br>
                           Rolo: Uh, yeah, here... <br><br>
                           Another AI: ... <br>
                           You don't have access to this part of the building. <br>
                           You need to go back outside. <br><br>
                           Oh no, this reroute cost us! Now, our presence is more suspicious. </p>
-      <input type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
+        </div>
+        <input class='button' type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
 
-      <!-- if player chose CLOSET -->
-      <p id="closet_text">  </p>
-      <input type="button" id="ready" onclick="ready()" value="ready">
+        <!-- if player chose CLOSET -->
+        <div class='around' id='closetborder'>
+          <p id="closet_text">  </p>
+        </div>
+        <input class='button' type="button" id="ready" onclick="ready()" value="ready">
 
-<!-- when player meets Arnold (Evil AI) & [fyi Rolo is the Good AI]-->
-      <p id='arnold'> "We meet again, Rolo." <br><br>
+        <!-- when player meets Arnold (Evil AI) & [fyi Rolo is the Good AI]-->
+        <div class='around' id='arnoldborder'>
+          <p id='arnold'> "We meet again, Rolo." <br><br>
                     It's so dark in here...but is that Arnold's voice? <br>
                     I'm going to go closer. <br>
                     . . . <br><br><br>
@@ -115,19 +195,22 @@
                     plugged into AutoMate's security system. <br><br>
                     That's how it's controlling other people and AIs. <br>
                     We walked right into it with no plan...</p>
-                    
-      <input type="button" id="unplug" onclick="goUnplug()" value="unplug it!">
-      <input type="button" id="question" onclick="askQs()" value="ask it questions!">
 
-      <!-- if player chose UNPLUG -->
-      <p id="unplug_text"> unpluggg </p>
-      <!-- if player chose QUESTIONS -->
-      <p id="q_text"> player chose questions </p>
+          <input class='button' type="button" id="unplug" onclick="goUnplug()" value="unplug it!">
+          <input class='button' type="button" id="question" onclick="askQs()" value="ask it questions!">
+        </div>
+        <!-- if player chose UNPLUG -->
 
+        <p id="unplug_text"> unpluggg </p>
+        <!-- if player chose QUESTIONS -->
+        <p id="q_text"> player chose questions </p>
+
+        <!-- Continue link for GameOver or Win page -->
+
+        <button class='button' class='start' id='to_confront' type="sumbit" action='/confront.html'> continue </button>
+        <!-- <p><a class="start" id="to_confront" href="/confront">Continue...</a></p> -->
+      </div>
     </div>
-
-<!-- Continue link for GameOver or Win page -->
-    <p><a class="start" id="to_confront" href="/confront">Continue...</a></p>
-
   </body>
+</center>
 </html>
