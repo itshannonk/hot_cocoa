@@ -2,9 +2,88 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title> AI or You </title>
+
+    <style media="screen">
+      .start {
+        visibility: hidden;
+      }
+
+      #to_confront {
+        color: maroon;
+        font-size: 25px;
+        /*border-style: double;
+        border-color: maroon;*/
+      }
+    </style>
   </head>
-  <body>
+  <body align="middle" bgcolor="black"><font color="white" face="courier new">
+    <script type="text/javascript">
+
+      function inOffice() {
+        document.getElementById("closet").style.visibility = "hidden";
+        document.getElementById("office_text").style.visibility = "visible";
+        document.getElementById("arnold").style.visibility = "visible";
+        document.getElementById("unplug").style.visibility = "visible";
+        document.getElementById("question").style.visibility = "visible";
+      }
+
+      function inCloset() {
+        document.getElementById("office").style.visibility = "hidden";
+        document.getElementById("closet_text").style.visibility = "visible";
+        document.getElementById("arnold").style.visibility = "visible";
+        document.getElementById("unplug").style.visibility = "visible";
+        document.getElementById("question").style.visibility = "visible";
+      }
+
+      function goUnplug() {
+        document.getElementById("question").style.visibility = "hidden";
+        document.getElementById("unplug_text").style.visibility = "visible";
+        document.getElementById("to_confront").style.visibility = "visible";
+      }
+
+      function askQs() {
+        document.getElementById("unplug").style.visibility = "hidden";
+        document.getElementById("q_text").style.visibility = "visible";
+        document.getElementById("to_confront").style.visibility = "visible";
+      }
+
+    </script>
+<!-- decides how to look for  -->
+    <p> Now that we're inside AutoMate and have gotten past other AIs, <br>
+        we can finally look for Arnold! <br>
+        It seems like there are two places we can go <br>
+        to search for a way to know Arnold's location.</p>
+    <input type="button" id="office" onclick="inOffice()" value="AI Offices">
+    <input type="button" id="closet" onclick="inCloset()" value="Janitor's Closet">
+    <div class='start'>
+
+      <!-- if player chose OFFICES -->
+      <p id="office_text"> player chose office </p>
+      <!-- if player chose CLOSET -->
+      <p id="closet_text"> player chose closet </p>
+
+<!-- when player meets Arnold (Evil AI) & [fyi Rolo is the Good AI]-->
+      <p id='arnold'> "We meet again, Rolo." <br>
+                    It's so dark in here...but is that Arnold's voice? <br>
+                    I'm going to go closer. <br>
+                    . . . <br>
+                    Arnold is right in the center of the room, <br>
+                    plugged into AutoMate's security system. <br>
+                    That's how it's controlling other people and AIs. <br>
+                    We walked right into it with no plan...</p>
+      <input type="button" id="unplug" onclick="goUnplug()" value="Unplug it!">
+      <input type="button" id="question" onclick="askQs()" value="Ask it questions!">
+
+      <!-- if player chose UNPLUG -->
+      <p id="unplug_text"> player chose unplug </p>
+      <!-- if player chose QUESTIONS -->
+      <p id="q_text"> player chose questions </p>
+
+    </div>
+
+<!-- Continue link for GameOver or Win page -->
+    <p><a class="start" id="to_confront" href="/confront">Continue...</a></p>
 
   </body>
 </html>

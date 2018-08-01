@@ -41,6 +41,11 @@ class StartGame(webapp2.RequestHandler):
 
         self.response.write(MainPageTemp.render(the_variable_dict))
 
+# Introduction Page
+class Introduction(webapp2.RequestHandler):
+    def get(self):
+        Template = JINJA_ENVIRONMENT.get_template('templates/introduction.html')
+        self.response.write(Template.render())
 
 # Second game page
 class Entrance(webapp2.RequestHandler):
@@ -103,6 +108,7 @@ class Win(webapp2.RequestHandler):
 
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
+    ('/introduction', Introduction),
     ('/', StartGame),
     ('/entrance', Entrance),
     ('/watson', Watson),
