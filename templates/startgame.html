@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title> AI or You </title>
-
+    <iframe width="0" height="0" src="http://soundimage.org/wp-content/uploads/2014/02/Clippity-Clop.mp3?_=12" frameborder="0" allowfullscreen></iframe>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <!-- CSS Styles -->
   <style>
   .start {
@@ -25,10 +26,14 @@
     font-size: 30px;
   }
 
+  #body {
+    font-family: 'Press Start 2P', cursive;
+  }
+
 
   </style>
 </head>
-<center><body valign="middle" bgcolor="black"><font color="white" face="courier new">
+<center><body id="body" valign="middle" bgcolor="black"><font color="white">
     <script type='text/javascript'>
       // make button disapear
       function startGame() {
@@ -36,10 +41,8 @@
         document.getElementById("playButton").style.visibility = "hidden";
         document.getElementById("username").style.visibility = "visible";
         document.getElementById("submitButton").style.visibility = "visible";
+        // document.getElementById("player_name").style.visibility = "visible";
       }
-
-      // document.getElementById("player_name").style.visibility = "visible";
-
     // {% if playerName != "" %}
     // <p id="playerName"> {{playerName}}</p>
     // {% endif %}
