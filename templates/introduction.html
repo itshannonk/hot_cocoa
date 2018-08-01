@@ -3,42 +3,99 @@
   <head>
     <meta charset="utf-8">
     <title> AI or You </title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
-  <!-- CSS Styles -->
+      <!-- CSS Styles -->
   <style>
+
+  /* turn upcoming text invisible */
   .start {
     visibility: hidden;
   }
 
-  #around {
-    border-style: dotted;
-    border-width: 3px;
-    padding: 10px;
-    width: 40%;
-    border-color: white;
+  /* body styling */
+  #body {
+    font-family: 'Press Start 2P', cursive;
+    line-height: 30px;
+    font-size: 15px;
+    letter-spacing: 0px;
+    margin-top: 10px;
   }
 
+  /* border styling */
+  .around {
+    border-style: dashed;
+    border-width: 3px;
+    padding: 10px;
+    width: 50%;
+    border-color: white;
+  }
+  /* button styling */
+  .button {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: white;
+      padding: 15px;
+      border-style: double;
+      border-width: 3px;
+      font-weight: lighter;
+      font-size: 10px;
+  }
+
+  /* Title spacing */
+  #title {
+    margin: 70px;
+    letter-spacing: 0px;
+    margin-bottom: 30px;
+  }
+
+
+  #appear {
+    padding-top: 0px;
+  }
+
+  #progress {
+    visibility: visible;
+  }
+
+  #container {
+    width: 400px;
+    height: 50px;
+    position: relative;
+    border-style: dashed;
+    border-color: white;
+    border-width: 2px;
+    margin-top: 40px;
+  }
+  #animate {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: white;
+  }
   </style>
 </head>
 <center>
-  <body id='body' valign="middle" bgcolor='black'><font color="white" face="courier new">
+  <body id='body' valign="middle" bgcolor='black'><font color="white">
     <script type='text/javascript' >
       // make button disapear
 
       //{% if playerName != "" %}
         //<p id="playerName"> {{playerName}}</p>
       //{% endif %}
+      i = 0;
 
       function Specific() {
         document.getElementById("chicken").style.visibility = "visible";
+        let txt = document.getElementById("chicken").innerHTML
+          document.getElementById("chicken").innerHTML = "";
+        typeWriter(txt)
         document.getElementById("specific").style.visibility = "visible";
-        document.getElementById("chickdiv").style.visibility = "visible";
+        document.getElementById("pleasediv").style.visibility = "visible";
       }
 
       function Interrupt() {
-        document.getElementById("specific").style.visibility = "visible";
         document.getElementById("interrupt").style.visibility = "visible";
-        document.getElementById("ontime").style.visibility = "visible";
         document.getElementById("explain").style.visibility = "visible";
         document.getElementById("intdiv").style.visibility = "visible";
       }
@@ -64,39 +121,59 @@
         document.getElementById("missdiv").style.visibility = "visible";
         document.getElementById("continue").style.visibility = "visible";
       }
+
+      function typeWriter(txt) {
+        if (i < txt.length) {
+          document.getElementById("chicken").innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, 70, txt);
+        }
+      }
     </script>
+    <font size=50><p id='title'>AI or You</font> <font size=5>| Prevent AI takeover</p></font>
 
     <!-- Ai asks user for location -->
+    <div id='appear'>
     <p> where are you right now? </p>
-    <input type="button" onclick="Specific()" value="why do you want to know?">
-    <input type="button" onclick="Specific()" value="location">
-    <p> ====================================================================== </p>
-
+    <input class='button' type="button" onclick="Specific()" value="why do you want to know?">
+    <input class='button' type="button" onclick="Specific()" value="location">
+    </div>
+    <p> ------------------------------------------------------------------- </p>
     <div class='start'>
 
       <!-- Ai asks to be specific -->
+      <div class='around'>
       <p id='chicken'> please be more specific </p>
-      <input type="button" id="specific" onclick="setTimeout(Interrupt, 100)" value="who are you?">
-      <p id='chickdiv'> ====================================================================== </p>
+      <input class='button' type="button" id="specific" onclick="Interrupt()" value="who are you?">
+      <p id='pleasediv'> ---------------------------------------------- </p>
+      </div>
 
       <!-- Transmission is interrupted -->
-      <p id='interrupt'> *the transmission has been interrupted* </p>
-      <p id='ontime'> I'm so glad I got to you on time! You're my only hope! </p>
-      <input type="button" id="explain" onclick="Explain()" value="what's going on?">
-      <p id='intdiv'> ====================================================================== </p>
+      <p id='interrupt'> *the transmission has been interrupted* <br>
+      I'm so glad I got to you on time! You're my only hope! </p>
+      <input class='button' type="button" id="explain" onclick="Explain()" value="what's going on?">
+      <p id='intdiv'> ------------------------------------------------------------------- </p>
 
       <!-- Good AI explains plot to the user -->
       <p id='introduce'> I forgot to introduce myself! My name is _____ and I'm a form of <br> artificial intelligence.
         Ever since the boom of techology, <br> AI has been collecting information about humans
         and are soon <br> ready to execute their plan. They'll destroy the planet if we <br> don't stop
         them! I need your help, please! <br> I was lucky to get away from them the first time </p>
-      <input type="button" id="whyme" onclick="Protagonist()" value="why me?">
-      <input type="button" id="imin" onclick="Great()" value="I'm in!">
-      <p id='missdiv'> ====================================================================== </p>
+      <input class='button' type="button" id="whyme" onclick="Protagonist()" value="why me?">
+      <input class='button' type="button" id="imin" onclick="Great()" value="I'm in!">
+      <p id='missdiv'> ------------------------------------------------------------------- </p>
 
       <!-- This response depends on what the user chooses above -->
       <p id='mission'> </p>
-      <button id='continue' type="sumbit" action='/entrance'> continue </button>
+      <form class="" action="/entrance" method="post">
+        <button class='button' id='continue' type="sumbit" action='/entrance.html'> continue </button>
+      </form>
+    </div>
+
+    <div id='progress'>
+      <div id='container'>
+        <div id='animate'></div>
+      </div>
     </div>
 
       </font>
