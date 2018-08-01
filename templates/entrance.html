@@ -8,56 +8,103 @@
       .start {
         visibility: hidden;
       }
+
+      #to_confront {
+        color: maroon;
+        font-size: 25px;
+        /*border-style: double;
+        border-color: maroon;*/
+      }
     </style>
   </head>
   <body align="middle" bgcolor="black"><font color="white" face="courier new">
     <script type="text/javascript">
-      function ToWork() {
+
+      function driveCar() {
+        document.getElementById("hoverboard").style.visibility = "hidden";
+        document.getElementById("car_text").style.visibility = "visible";
+        document.getElementById("enter").style.visibility = "visible";
         document.getElementById("front").style.visibility = "visible";
         document.getElementById("ai").style.visibility = "visible";
-        document.getElementById("enter").style.visibility = "visible";
-    }
+      }
 
-      function Entrance() {
+      function useHoverboard() {
+        document.getElementById("car").style.visibility = "hidden";
+        document.getElementById("board_text").style.visibility = "visible";
+        document.getElementById("enter").style.visibility = "visible";
+        document.getElementById("front").style.visibility = "visible";
+        document.getElementById("ai").style.visibility = "visible";
+      }
+
+      function useFront() {
+        document.getElementById("ai").style.visibility = "hidden";
+        document.getElementById("front_text").style.visibility = "visible";
+        document.getElementById("watson").style.visibility = "visible";
         document.getElementById("no_trust").style.visibility = "visible";
         document.getElementById("trust").style.visibility = "visible";
-          //make an if statement
+      }
+
+      function useBack() {
+        document.getElementById("front").style.visibility = "hidden";
+        document.getElementById("ai_text").style.visibility = "visible";
         document.getElementById("watson").style.visibility = "visible";
+        document.getElementById("no_trust").style.visibility = "visible";
+        document.getElementById("trust").style.visibility = "visible";
       }
 
-      function Meet() {
-
+      function noTrust() {
+        document.getElementById("trust").style.visibility = "hidden";
+        document.getElementById("no_trust_text").style.visibility = "visible";
+        document.getElementById("to_confront").style.visibility = "visible";
       }
 
-      // function () {
-      //   document.getElementById("").style.visibility = "visible";
-      //   document.getElementById("").style.visibility = "visible";
-      //   document.getElementById("").style.visibility = "visible";
-      // }
+      function trust() {
+        document.getElementById("no_trust").style.visibility = "hidden";
+        document.getElementById("trust_text").style.visibility = "visible";
+        document.getElementById("to_confront").style.visibility = "visible";
+      }
 
     </script>
-
-    <p> Ok, we don't have a lot of time. First we need to get to the AutoMate building where Arnold was created.
-    It's pretty far, and we have two ways to get there.</p>
-    <input type="button" id="car" onclick="ToWork()" value="self-driving car with gps system">
-    <input type="button" id="hoverboard" onclick="ToWork()" value="hoverboard you control by the mind">
+<!-- player decides how to get to AutoMate building -->
+    <p> Ok, we don't have a lot of time! <br> First we need to get to the AutoMate building where Arnold was created. <br>
+        It's pretty far, and we have two ways to get there.</p>
+    <input type="button" id="car" onclick="driveCar()" value="self-driving car with gps system">
+    <input type="button" id="hoverboard" onclick="useHoverboard()" value="hoverboard you control by the mind">
     <div class='start'>
 
-      <p id='enter'> Nice, we're right outside of AutoMate right now. Our goal is be as subtle as possible and enter the building. </p>
-      <input type="button" id="front" onclick="Entrance()" value="Front Door">
-      <input type="button" id="ai" onclick="Entrance()" value="Door for AIs">
+      <!-- if player chose CAR -->
+      <p id="car_text"> ~player chose car </p>
+      <!-- if player chose HOVERBOARD -->
+      <p id="board_text"> ~player chose board </p>
 
+<!-- decides which entrance to use -->
+      <p id='enter'> Nice, we're right outside of AutoMate right now. <br>
+                    Our goal is be as subtle as possible and enter the building. </p>
+      <input type="button" id="front" onclick="useFront()" value="Front Door">
+      <input type="button" id="ai" onclick="useBack()" value="Door for AIs">
+
+      <!-- if player chose FRONT -->
+      <p id="front_text"> ~player chose front door </p>
+      <!-- if player chose AI DOOR -->
+      <p id="ai_text"> ~player chose ai door </p>
+
+<!-- meeting watson decisons -->
       <p id='watson'>"Hi, my name is Wat-son" <br>
-                    Oh, another AI! It might be worth it to befriend it, but Arnold has a lot of control on the AIs and humans.
-                    There's a chance that Watson could be a spy. What should I do?</p>
-      <input type="button" id="no_trust" onclick="templates/confront.html" value="Don't trust Watson">
-      <input type="button" id="trust" onclick="templates/confront.html" value="Talk to Watson">
+                    Oh, another AI! It might be worth it to befriend it, <br>
+                    but Arnold has a lot of control on the AIs and humans. <br>
+                    There's a chance that Watson could be a spy. <br> What should I do?</p>
+      <input type="button" id="no_trust" onclick="noTrust()" value="Don't trust Watson">
+      <input type="button" id="trust" onclick="trust()" value="Talk to Watson">
+
+      <!-- if player chose DON'T TRUST -->
+      <p id="no_trust_text"> ~don't trust </p>
+      <!-- if player chose TRUST -->
+      <p id="trust_text"> ~trust! </p>
 
     </div>
-    <!--<p id=''> </p>
-    <input type="button" id="" onclick="()" value="">
-    <input type="button" id="" onclick="()" value="">
-  -->
+
+  <!-- Continue link to /Confront page-->
+    <p><a class="start" id="to_confront" href="/confront">Continue...</a></p>
 
   </body>
 </html>
