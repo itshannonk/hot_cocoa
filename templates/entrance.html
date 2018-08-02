@@ -6,6 +6,8 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
     <style media="screen">
+      .crosshair {cursor: crosshair;}
+
       .start {
         visibility: hidden;
       }
@@ -102,7 +104,7 @@
     </style>
   </head>
   <center>
-  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black"><font color="white">
+  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black" class="crosshair"><font color="white">
     <script type="text/javascript">
 
       function UpdateProg () {
@@ -238,7 +240,7 @@
         sessionStorage.setItem('progress', progress.style.offsetHeight);
       }
     </script>
-    <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
+    <font size=50><p id='title'>AI or You </font> <font size=5 color="gray">| Prevent AI Takeover</p></font>
     <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
 
     <!-- Progress bar -->
