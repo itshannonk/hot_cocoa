@@ -114,4 +114,5 @@ app = webapp2.WSGIApplication([
     ('/confront', Confront),
     ('/gameover', Gameover),
     ('/winpage', Win),
+    ('/credits', Credits),
 ], debug=True)
