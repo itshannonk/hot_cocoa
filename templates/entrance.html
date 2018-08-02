@@ -98,11 +98,17 @@
         float: left;
         padding-top: 150px;
       }
+
     </style>
   </head>
   <center>
-  <body id='body' align="middle" bgcolor="black"><font color="white">
+  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black"><font color="white">
     <script type="text/javascript">
+
+      function UpdateProg () {
+        let progress = document.getElementById('animate');
+        progress.style.height = sessionStorage.getItem('progress') + 'px';
+      }
 
       function driveCar() {
         document.getElementById('transportborder').style.visibility = "visible";
@@ -113,6 +119,7 @@
         i = 0;
         typeWriter(txt, 'car_text');
         document.getElementById("hoverboard").style.visibility = "hidden";
+        Increase();
       }
 
       function useHoverboard() {
@@ -125,6 +132,7 @@
         This puts us at more risk of it finding us! So let's hurry!";
         i = 0;
         typeWriter(txt, 'car_text');
+        Decrease();
       }
 
       function go() {
@@ -141,27 +149,36 @@
         document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("front").disabled = true;
         // type writer
-        let txt = document.getElementById("car_text").innerHTML;
         document.getElementById("front_text").innerHTML = "";
+        let txt = "Security: What's your ID, AI? \n Rolo: ...uh, I'm Rolo.. and here's my ID\n\
+                  Security: I'm going to need you to come inside through the entrance for AIs \n\
+                  ...\n\
+                  Looks like we just attracted more attention to our opperation :|"
         i = 0;
         typeWriter(txt, 'front_text');
         document.getElementById("ai").style.visibility = "hidden";
+        Decrease();
       }
 
       function useBack() {
         document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("ai").disabled = true;
+        // type writer
+        let txt = document.getElementById("front_text").innerHTML;
         document.getElementById("front_text").innerHTML = "";
-        let txt = "This is good; I was able to blend in with the other AIs\
-                  and we didn't attract much attention.\
-                  The art of subtlety!";
         i = 0;
         typeWriter(txt, 'front_text');
         document.getElementById("front").style.visibility = "hidden";
+        Increase();
       }
 
       function door() {
         document.getElementById('arnoldborder').style.visibility = "visible";
+        // type writer
+        let txt = document.getElementById('watson').innerHTML;
+        document.getElementById('watson').innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'watson');
         document.getElementById("door").disabled = true;
       }
 
@@ -169,26 +186,57 @@
         document.getElementById('watsonborder').style.visibility = "visible";
         document.getElementById("no_trust").disabled = true;
         document.getElementById("trust").style.visibility = "hidden";
-        document.getElementById('trust_text').innerHTML = "<br> Rolo: Goodbye, Watson... <br><br> Ok, let's keep going. </p>"
+        // type writer
+        let txt = "Rolo: Goodbye, Watson... \n\n Ok, let's keep going.";
+        document.getElementById('trust_text').innerHTML =  "";
+        i = 0;
+        typeWriter(txt, 'trust_text');
         sessionStorage.setItem('watson', false);
       }
 
       function trust() {
         document.getElementById('watsonborder').style.visibility = "visible";
         document.getElementById("trust").disabled = true;
+        // type writer
+        let txt = document.getElementById('trust_text').innerHTML;
+        document.getElementById('trust_text').innerHTML = '';
+        i = 0;
+        typeWriter(txt, 'trust_text');
         document.getElementById("no_trust").style.visibility = "hidden";
         sessionStorage.setItem('watson', true);
+        Increase();
       }
 
       // Type writer effect function
       function typeWriter(txt, id) {
         if (i < txt.length) {
-          document.getElementById(id).innerHTML += txt.charAt(i);
+          if (txt.charAt(i) === '\n') {
+            document.getElementById(id).innerHTML += ' <br> ';
+          } else {
+            document.getElementById(id).innerHTML += txt.charAt(i);
+          }
           i++;
           setTimeout(typeWriter, 1, txt, id);
         }
       }
 
+      // Decrease progress bar
+      function Decrease() {
+        let progress = document.getElementById('animate');
+        progress.style.height = progress.offsetHeight + 75 + 'px';
+      }
+
+      // Increase progress bar
+      function Increase() {
+        let progress = document.getElementById('animate');
+        progress.style.height = progress.offsetHeight -  75 + 'px';
+      }
+
+      // save Progress
+      function Save() {
+        let progress = document.getElementById('animate');
+        sessionStorage.setItem('progress', progress.style.offsetHeight);
+      }
     </script>
     <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
     <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
@@ -231,12 +279,12 @@
 
         <!-- if player chose FRONT -->
         <div class='around' id='doorborder'>
-          <p id="front_text"> <br> Security: What's your ID, AI? <br>
-                        Rolo: ...uh, I'm Rolo...and here's my ID <br>
-                        Security: I'm going to need you to come inside through <br>
-                        the entrance for AIs. <br>
-                        ... <br>
-                        Looks like we just attracted more attention to our operation :|</p>
+          <p id="front_text"> This is good; I was able to blend in with the other AIs
+                              and we didn't attract much attention.
+                              The art of subtlety! </p>
+          <p id="front_text2"> </p>
+          <p id="front_text3"> </p>
+          <p id="front_text4"> </p>
 
           <!-- if player chose AI DOOR -->
           <p id="ai_text">  </p>
@@ -245,11 +293,11 @@
 
         <!-- meeting watson decisons -->
         <div class='around' id='arnoldborder'>
-          <p id='watson'><br> I see something coming towards us. <br><br>
-                    Watson: Hi, my name is Wat-son. <br><br>
-                    Oh, another AI! It might be worth it to befriend it, <br>
-                    but Arnold has a lot of control on the AIs and humans. <br>
-                    There's a chance that Watson could be a spy. <br> What should I do?</p>
+          <p id='watson'> I see something coming towards us.
+                    Watson: Hi, my name is Wat-son.
+                    Oh, another AI! It might be worth it to befriend it,
+                    but Arnold has a lot of control on the AIs and humans.
+                    There's a chance that Watson could be a spy. What should I do?</p>
 
           <input class='button' type="button" id="no_trust" onclick="noTrust()" value="don't trust Watson">
           <input class='button' type="button" id="trust" onclick="trust()" value="talk to Watson">
@@ -259,15 +307,15 @@
         <div class='around' id='watsonborder'>
 
           <!-- if player chose TRUST -->
-          <p id="trust_text"> Rolo: Hi, I'm Rolo. Can you help us?<br><br>
-                        Watson: What do you want to know? <br><br>
-                        Rolo: We're looking for...the main room of this building. <br><br>
-                        Watson: You can go through this door and look around. <br><br>
+          <p id="trust_text"> Rolo: Hi, I'm Rolo. Can you help us?
+                        Watson: What do you want to know?
+                        Rolo: We're looking for...the main room of this building.
+                        Watson: You can go through this door and look around.
                         Rolo: Ok, thanks. ;)</p>
 
         <!-- Continue link to /Confront page-->
         <form class="" action="/confront">
-          <button class='button' id='continue' type="sumbit" action='/confront.html'> continue </button>
+          <button class='button' id='continue' type="sumbit" action='/confront.html' onclick='Save()'> continue </button>
         </form>
       </div>
     </div>
