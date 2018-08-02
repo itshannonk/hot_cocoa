@@ -86,9 +86,7 @@
         document.getElementById("trust").style.visibility = "hidden";
         document.getElementById("no_trust_text").style.visibility = "visible";
         document.getElementById("to_confront").style.visibility = "visible";
-        let watson_help = false;
-        document.getElementById("w_help1").value = false;
-
+        sessionStorage.setItem('watson', false);
         //document.getElementById("test").innerHTML = watson_help;
       }
 
@@ -97,8 +95,7 @@
         document.getElementById("no_trust").style.visibility = "hidden";
         document.getElementById("trust_text").style.visibility = "visible";
         document.getElementById("to_confront").style.visibility = "visible";
-        let watson_help = true;
-        document.getElementById("w_help1").value = true;
+        sessionStorage.setItem('watson', true);
 
         //document.getElementById("test").innerHTML = watson_help;
       }
