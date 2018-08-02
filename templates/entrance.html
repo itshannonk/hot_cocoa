@@ -7,6 +7,8 @@
     <iframe width="0" height="0" src="http://soundimage.org/wp-content/uploads/2014/04/Fantasy_Game_Background.mp3?_=2" frameborder="0" allowfullscreen></iframe>
 
     <style media="screen">
+      .crosshair {cursor: crosshair;}
+
       .start {
         visibility: hidden;
       }
@@ -103,7 +105,7 @@
     </style>
   </head>
   <center>
-  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black"><font color="white">
+  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black" class="crosshair"><font color="white">
     <script type="text/javascript">
 
       function UpdateProg () {
@@ -239,7 +241,7 @@
         sessionStorage.setItem('progress', progress.style.offsetHeight);
       }
     </script>
-    <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
+    <font size=50><p id='title'>AI or You </font> <font size=5 color="gray">| Prevent AI Takeover</p></font>
     <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
 
     <!-- Progress bar -->
