@@ -22,6 +22,18 @@
         border-color: maroon;*/
       }
 
+      #gif {
+        width: 10%;
+
+      }
+
+      /* Title spacing */
+      #title {
+        margin: 70px;
+        letter-spacing: 0px;
+        margin-bottom: 10px;
+      }
+
       /* body styling */
       #body {
         font-family: 'Press Start 2P', cursive;
@@ -31,8 +43,53 @@
         margin-top: 10px;
       }
 
+      .button {
+          font-family: 'Press Start 2P', cursive;
+          background-color: black;
+          color: white;
+          padding: 15px;
+          border-style: double;
+          border-width: 3px;
+          font-weight: lighter;
+          font-size: 10px;
+      }
+
+      input[type="button"]:disabled {
+        background-color: black;
+        color: #777;
+      }
+
+      /* progress bar styling */
+      #container {
+        width: 50px;
+        height: 500px;
+        position: relative;
+        border: 2px dashed black;
+        margin-top: 40px;
+        background-color: white;
+      }
+      #animate {
+        width: 50px;
+        height: 250px;
+        position: absolute;
+        background: black;
+      }
+
+      /* progress bar stuff */
+      #sideprogress {
+        width: 90%;
+        float:left;
+      }
+
+      #progress {
+        visibility: visible;
+        width: 10%;
+        float: left;
+        padding-top: 150px;
+      }
     </style>
   </head>
+  <center>
   <body id='body' align="middle" bgcolor="black"><font color="white">
     <script type="text/javascript">
 
@@ -87,7 +144,6 @@
         document.getElementById("no_trust_text").style.visibility = "visible";
         document.getElementById("to_confront").style.visibility = "visible";
         sessionStorage.setItem('watson', false);
-        //document.getElementById("test").innerHTML = watson_help;
       }
 
       function trust() {
@@ -96,80 +152,93 @@
         document.getElementById("trust_text").style.visibility = "visible";
         document.getElementById("to_confront").style.visibility = "visible";
         sessionStorage.setItem('watson', true);
-
-        //document.getElementById("test").innerHTML = watson_help;
       }
 
     </script>
-    <font size=50><p>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
-<!-- player decides how to get to AutoMate building -->
-    <p><br> Ok, we don't have a lot of time! <br>
+    <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
+    <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
+
+    <!-- Progress bar -->
+    <div id='progress'>
+      <p> win for the humans! </p>
+      <div id='container'>
+        <div id='animate'></div>
+      </div>
+      <p> win for the AI :( </p>
+    </div>
+
+    <!-- player decides how to get to AutoMate building -->
+    <div id='sideprogress'>
+      <p><br> Ok, we don't have a lot of time! <br>
         First we need to get to the AutoMate building where Arnold was created. <br>
         It's pretty far, and we have two ways to get there.</p>
-    <input type="button" id="car" onclick="driveCar()" value="self-driving car with gps system">
-    <input type="button" id="hoverboard" onclick="useHoverboard()" value="hoverboard you control with your mind">
-    <div class='start'>
+      <input class='button' type="button" id="car" onclick="driveCar()" value="self-driving car with gps system">
+      <input class='button' type="button" id="hoverboard" onclick="useHoverboard()" value="hoverboard you control with your mind">
 
-      <!-- if player chose CAR -->
-      <p id="car_text"> <br> Good choice. The self-driving car had the route to AutoMate, <br>
+      <div class='start'>
+        <!-- if player chose CAR -->
+        <div class='around'>
+          <p id="car_text"> <br> Good choice. The self-driving car had the route to AutoMate, <br>
                       and we didn't need to compromise any more data to AI-Arnold. <br>
                       Now, let's go! :D</p>
 
-      <!-- if player chose HOVERBOARD -->
-      <p id="board_text">  </p>
+          <!-- if player chose HOVERBOARD -->
+          <p id="board_text">  </p>
+          <input class='button' type="button" id="go" onclick="go()" value="keep going">
+        </div>
 
-      <input type="button" id="go" onclick="go()" value="keep going">
-
-<!-- decides which entrance to use -->
-      <p id='enter'> <br> Nice, we're right outside of AutoMate right now. <br>
+        <!-- decides which entrance to use -->
+        <div class='around'>
+          <p id='enter'> <br> Nice, we're right outside of AutoMate right now. <br>
                     Our goal is be as subtle as possible and enter the building. </p>
-      <input type="button" id="front" onclick="useFront()" value="front entrance">
-      <input type="button" id="ai" onclick="useBack()" value="AI entrance">
+          <input class='button' type="button" id="front" onclick="useFront()" value="front entrance">
+          <input class='button' type="button" id="ai" onclick="useBack()" value="AI entrance">
+        </div>
 
-      <!-- if player chose FRONT -->
-      <p id="front_text"> <br> Security: What's your ID, AI? <br>
+        <!-- if player chose FRONT -->
+        <div class='around'>
+          <p id="front_text"> <br> Security: What's your ID, AI? <br>
                         Rolo: ...uh, I'm Rolo...and here's my ID <br>
                         Security: I'm going to need you to come inside through <br>
                         the entrance for AIs. <br>
                         ... <br>
                         Looks like we just attracted more attention to our operation :|</p>
 
-      <!-- if player chose AI DOOR -->
-      <p id="ai_text">  </p>
+          <!-- if player chose AI DOOR -->
+          <p id="ai_text">  </p>
+          <input class='button' type="button" id="door" onclick="door()" value="keep going">
+        </div>
 
-      <input type="button" id="door" onclick="door()" value="keep going">
-
-<!-- meeting watson decisons -->
-      <p id='watson'><br> I see something coming towards us. <br><br>
+        <!-- meeting watson decisons -->
+        <div class='around'>
+          <p id='watson'><br> I see something coming towards us. <br><br>
                     Watson: Hi, my name is Wat-son. <br><br>
                     Oh, another AI! It might be worth it to befriend it, <br>
                     but Arnold has a lot of control on the AIs and humans. <br>
                     There's a chance that Watson could be a spy. <br> What should I do?</p>
 
-      <input type="button" id="no_trust" onclick="noTrust()" value="don't trust Watson">
-      <input type="button" id="trust" onclick="trust()" value="talk to Watson">
+          <input class='button' type="button" id="no_trust" onclick="noTrust()" value="don't trust Watson">
+          <input class='button' type="button" id="trust" onclick="trust()" value="talk to Watson">
+        </div>
 
-      <!-- if player chose DON'T TRUST -->
-      <p id="no_trust_text"> Rolo: Goodbye, Watson... <br><br>
+        <!-- if player chose DON'T TRUST -->
+        <p id="no_trust_text"> Rolo: Goodbye, Watson... <br><br>
                             Ok, let's keep going. </p>
 
-      <!-- if player chose TRUST -->
-      <p id="trust_text"> Rolo: Hi, I'm Rolo. Can you help us?<br><br>
+        <!-- if player chose TRUST -->
+        <p id="trust_text"> Rolo: Hi, I'm Rolo. Can you help us?<br><br>
                         Watson: What do you want to know? <br><br>
                         Rolo: We're looking for...the main room of this building. <br><br>
                         Watson: You can go through this door and look around. <br><br>
                         Rolo: Ok, thanks. ;)</p>
 
-    </div>
+      </div>
 
-  <!-- Continue link to /Confront page-->
-    <p><a class="start" id="to_confront" href="/confront">Continue...</a></p>
-
-      <form class="" action="index.html" method="post" style="visibility:hidden">
-        <input type="text" id="w_help1" name="w_help" value="">
+      <!-- Continue link to /Confront page-->
+      <form class="" action="/confront">
+        <button class='button' id='continue' type="sumbit" action='/confront.html'> continue </button>
       </form>
-
+    </div>
   </body>
-<center>
 </center>
 </html>
