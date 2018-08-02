@@ -104,10 +104,6 @@
     <script type='text/javascript' >
       // make button disapear
 
-      //{% if playerName != "" %}
-        //<p id="playerName"> {{playerName}}</p>
-      //{% endif %}
-
       function intro() {
         document.getElementById("appear1").style.visibility = "visible";
         let txt = document.getElementById("appear1").innerHTML; // type writer
@@ -190,11 +186,11 @@
         i = 0;
         function delaybutton4() {
           document.getElementById("continue").style.visibility = "visible";
-
         }
         typeWriter(txt, 'mission', delaybutton4);
         // hide other button option
         document.getElementById("imin").style.visibility = "hidden";
+        Save();
       }
 
       function Great() {
@@ -209,6 +205,7 @@
         typeWriter(txt, 'mission', delaybutton5);
         // hide other button option
         document.getElementById("whyme").style.visibility = "hidden";
+        Save();
       }
 
       // Type writer effect function
@@ -225,14 +222,19 @@
       // Decrease progress bar
       function Decrease() {
         let progress = document.getElementById('animate')
-        progress.style.height = progress.offsetHeight + 25 + 'px'
+        progress.style.height = progress.offsetHeight + 75 + 'px'
       }
 
       // Increase progress bar
       function Increase() {
         let progress = document.getElementById('animate')
-        progress.style.height = progress.offsetHeight -  25 + 'px'
+        progress.style.height = progress.offsetHeight - 75 + 'px'
+      }
 
+      // save Progress
+      function Save() {
+        let progress = document.getElementById('animate');
+        sessionStorage.setItem('progress', progress.offsetHeight);
       }
     </script>
 
