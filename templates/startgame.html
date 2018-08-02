@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <!-- CSS Styles -->
   <style>
+  .crosshair {cursor: crosshair;}
+
   .start {
     visibility: hidden;
   }
@@ -24,6 +26,7 @@
     font-family: 'Press Start 2P', cursive;
     /*border-color: maroon; */
     border-width: thick;
+
   }
 
   #playButton:hover {
@@ -37,7 +40,7 @@
 
   </style>
 </head>
-<center><body id="body" valign="middle" bgcolor="black"><font color="white">
+<center><body id="body" valign="middle" bgcolor="black" class="crosshair"><font color="white">
     <script type='text/javascript'>
       // make button disapear
       function startGame() {
@@ -173,7 +176,7 @@
     <p></font> <font size=5 color="gray">| Prevent AI Takeover |</p></font>
 
     <p id="start"></p>
-    <input type="button" id="playButton" onclick="startGame();" value="Play">
+    <input type="button" id="playButton" onclick="startGame();" class="crosshair" value="Play">
     <form action="/introduction" method="get">
       <input type="text" id="username" name="username" value="" style="visibility:hidden;">
       <input type="submit" id="submitButton" value="submit" style="visibility:hidden;">
