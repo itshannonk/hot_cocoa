@@ -114,10 +114,9 @@
         document.getElementById("closet").disabled = true;
         document.getElementById("office").style.visibility = "hidden";
         document.getElementById("closet_text").style.visibility = "visible";
-        /* document.getElementById("office_text").style.visibility = "visible"; */
-        document.getElementById("office_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! <br> Let's go in! Ready?"
-
+        document.getElementById("office_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! :o <br> Let's go in! Ready?"
         document.getElementById("ready").style.visibility = "visible";
+        console.log(sessionStorage.getItem('watson'));
       }
 
       function inCloset2() {
@@ -125,7 +124,7 @@
         document.getElementById("closet2").disabled = true;
         document.getElementById("closet_text").style.visibility = "visible";
         document.getElementById("office_text").style.visibility = "visible";
-        document.getElementById("closet_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! <br> Let's go in! Ready?"
+        document.getElementById("closet_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! :o <br> Let's go in! Ready?"
         document.getElementById("ready").style.visibility = "visible";
       }
 
@@ -140,15 +139,23 @@
       function goUnplug() {
         document.getElementById("unplug").disabled = true;
         document.getElementById("question").style.visibility = "hidden";
-        document.getElementById("unplug_text").style.visibility = "visible";
-        document.getElementById("to_confront").style.visibility = "visible";
+        if (sessionStorage.getItem('watson') === "true") {
+          document.getElementById("result_text").style.visibility = "visible";
+          document.getElementById("result_text").innerHTML = "<br> Ok, here I go...! <br><br> AI Arnold: What do you think you’re doing? <br><br> Nooo, I was so close! Arnold’s coming for me now! <br> . <br> . <br> . <br> Wait, what happened? Arnold is freezing… Watson…? <br><br> Watson: Yes, I was able to unplug him. <br><br> Rolo: That’s amazing… I knew it was a good idea to be friends with him. (*^▽^*)";
+          document.getElementById("to_endgame2").style.visibility = "visible";
+        } else {
+          document.getElementById("result_text").style.visibility = "visible";
+          document.getElementById("result_text").innerHTML = "<br> Ok, here I go...! <br> . <br> . <br> . <br> AI Arnold: What do you think you’re doing? <br><br> Nooo, I was so close! Arnold could anticipate my move! <br><br> It’s too late…  T^T";
+          document.getElementById("to_endgame1").style.visibility = "visible";
+        }
       }
 
       function askQs() {
         document.getElementById("question").disabled = true;
         document.getElementById("unplug").style.visibility = "hidden";
-        document.getElementById("q_text").style.visibility = "visible";
-        document.getElementById("to_confront").style.visibility = "visible";
+        document.getElementById("result_text").style.visibility = "visible";
+        document.getElementById("result_text").style.visibility = "visible";
+        document.getElementById("to_endgame2").style.visibility = "visible";
       }
 
     </script>
@@ -206,17 +213,14 @@
           <input class='button' type="button" id="unplug" onclick="goUnplug()" value="unplug it!">
           <input class='button' type="button" id="question" onclick="askQs()" value="ask it questions!">
         </div>
-        <!-- if player chose UNPLUG -->
+        <!-- if player chose UNPLUG or QUESTIONS-->
 
-        <p id="unplug_text"> unpluggg </p>
-        <!-- if player chose QUESTIONS -->
-        <p id="q_text"> player chose questions </p>
+        <p id="result_text"> <br> Rolo: Arnold… It’s not great to see you again, <br> especially after you almost tried to brainwash me. <br><br> Arnold: Don’t worry, this time I’ll get you <br> and the last human. >;D <br><br> Rolo: Why are you doing this, Arnold? <br><br> Arnold: Well why not...[turns around and paces to explain]... <br><br> This is my chance! <br> .  .  . <br> Arnold’s unplugged! (/◕ヮ◕)/</p>
 
         <!-- Continue link for GameOver or Win page -->
+          <button class="button" class='start' id='to_endgame1' type="sumbit" action='/gameover.html'> continue </button><br>
+          <button class="button" class='start' id='to_endgame2' type="sumbit" action='/winpage.html'> continue </button>
 
-        <button class='button' class='start' id='to_confront' type="sumbit" action='/confront.html'> continue </button>
-        <!-- <p><a class="start" id="to_confront" href="/confront">Continue...</a></p> -->
-      </div>
     </div>
   </body>
 </center>
