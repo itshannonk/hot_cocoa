@@ -98,6 +98,7 @@
         float: left;
         padding-top: 150px;
       }
+
     </style>
   </head>
   <center>
@@ -113,6 +114,7 @@
         i = 0;
         typeWriter(txt, 'car_text');
         document.getElementById("hoverboard").style.visibility = "hidden";
+        Increase();
       }
 
       function useHoverboard() {
@@ -125,6 +127,7 @@
         This puts us at more risk of it finding us! So let's hurry!";
         i = 0;
         typeWriter(txt, 'car_text');
+        Decrease();
       }
 
       function go() {
@@ -141,28 +144,51 @@
         document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("front").disabled = true;
         // type writer
-        let txt = document.getElementById("car_text").innerHTML;
         document.getElementById("front_text").innerHTML = "";
+        let txt = "Security: What's your ID, AI? & Rolo: ...uh, I'm Rolo.. and here's my ID";
+                //  Security: I'm going to need you to come inside through the entrance for AIs\
+                //  ...\
+                //  Looks like we just attracted more attention to our opperation :|"
         i = 0;
         typeWriter(txt, 'front_text');
+
+        // txt = "Rolo: ...uh, I'm Rolo.. and here's my ID";
+        // i = 0;
+        // typeWriter(txt, 'front_text2');
+
+        //txt = "Rolo: ...uh, I'm Rolo.. and here's my ID\n"
+        //i = 0;
+        //typeWriter(txt, 'front_text')
+
         document.getElementById("ai").style.visibility = "hidden";
+        Decrease();
       }
 
       function useBack() {
         document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("ai").disabled = true;
+        let txt = document.getElementById("front_text").innerHTML;
         document.getElementById("front_text").innerHTML = "";
-        let txt = "This is good; I was able to blend in with the other AIs\
-                  and we didn't attract much attention.\
-                  The art of subtlety!";
         i = 0;
         typeWriter(txt, 'front_text');
         document.getElementById("front").style.visibility = "hidden";
+        Increase();
       }
 
       function door() {
         document.getElementById('arnoldborder').style.visibility = "visible";
+        // type writer
+        let txt = document.getElementById('watson');
+        document.getElementById('watson').innerHTML = "";
+        typeWriter(txt, 'watson');
         document.getElementById("door").disabled = true;
+
+      //  <br> Security: What's your ID, AI? <br>
+      //                Rolo: ...uh, I'm Rolo...and here's my ID <br>
+      //                Security: I'm going to need you to come inside through <br>
+      //                the entrance for AIs. <br>
+      //                ... <br>
+      //                Looks like we just attracted more attention to our operation :|</p>
       }
 
       function noTrust() {
@@ -178,17 +204,39 @@
         document.getElementById("trust").disabled = true;
         document.getElementById("no_trust").style.visibility = "hidden";
         sessionStorage.setItem('watson', true);
+        Increase();
       }
 
       // Type writer effect function
       function typeWriter(txt, id) {
         if (i < txt.length) {
-          document.getElementById(id).innerHTML += txt.charAt(i);
-          i++;
-          setTimeout(typeWriter, 1, txt, id);
+          if (txt.charAt(i) === '&') {
+            document.getElementById(id).innerHTML += '\n';
+          } else {
+            document.getElementById(id).innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, 1, txt, id);
+          }
         }
       }
 
+      // Decrease progress bar
+      function Decrease() {
+        let progress = document.getElementById('animate')
+        progress.style.height = progress.offsetHeight + 75 + 'px'
+      }
+
+      // Increase progress bar
+      function Increase() {
+        let progress = document.getElementById('animate')
+        progress.style.height = progress.offsetHeight -  75 + 'px'
+      }
+
+      // save Progress
+      function Save() {
+        let progress = document.getElementById('animate');
+        sessionStorage.setItem('progress', progress.style.offsetHeight);
+      }
     </script>
     <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
     <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
@@ -231,12 +279,12 @@
 
         <!-- if player chose FRONT -->
         <div class='around' id='doorborder'>
-          <p id="front_text"> <br> Security: What's your ID, AI? <br>
-                        Rolo: ...uh, I'm Rolo...and here's my ID <br>
-                        Security: I'm going to need you to come inside through <br>
-                        the entrance for AIs. <br>
-                        ... <br>
-                        Looks like we just attracted more attention to our operation :|</p>
+          <p id="front_text"> This is good; I was able to blend in with the other AIs
+                              and we didn't attract much attention.
+                              The art of subtlety! </p>
+          <p id="front_text2"> </p>
+          <p id="front_text3"> </p>
+          <p id="front_text4"> </p>
 
           <!-- if player chose AI DOOR -->
           <p id="ai_text">  </p>
@@ -267,7 +315,7 @@
 
         <!-- Continue link to /Confront page-->
         <form class="" action="/confront">
-          <button class='button' id='continue' type="sumbit" action='/confront.html'> continue </button>
+          <button class='button' id='continue' type="sumbit" action='/confront.html' onclick='Save()'> continue </button>
         </form>
       </div>
     </div>
