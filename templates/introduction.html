@@ -13,12 +13,6 @@
     visibility: hidden;
   }
 
-  #to_confront {
-    color: maroon;
-    font-size: 25px;
-    /*border-style: double;
-    border-color: maroon;*/
-  }
   /* body styling */
   #body {
     font-family: 'Press Start 2P', cursive;
@@ -50,6 +44,11 @@
       font-size: 10px;
   }
 
+  input[type="button"]:disabled {
+    background-color: black;
+    color: #777;
+  }
+
   /* Title spacing */
   #title {
     margin: 70px;
@@ -59,7 +58,6 @@
 
   #gif {
     width: 10%;
-
   }
 
   #appear {
@@ -178,7 +176,7 @@
       function Protagonist() {
         document.getElementById('missionborder').style.visibility = 'visible';
         // type writer
-        let txt = 'Because you\'re the last human that isn\'t controlled by AI! You need to save yourself and the rest of the world!';
+        let txt = 'Because you\'re the last human that isn\'t controlled by AI Arnold! You need to save yourself and the rest of the world!';
         i = 0;
         function delaybutton4() {
           document.getElementById("continue").style.visibility = "visible";
@@ -267,10 +265,9 @@
       <!-- Good AI explains plot to the user -->
         <div class='around' id='explainborder'>
           <p id='introduce'> I forgot to introduce myself! My name is Rolo and I'm a form of artificial intelligence.
-            Ever since the boom of techology, Arnold, the evil AI has been collecting information about humans and are soon ready to execute their plan.
-            They'll destroy the planet if we don't stop them!
-             I need your help, please! I was lucky to get away from them the first time! </p>
-             </div>
+            Ever since the boom of techology, Arnold, the evil AI has been collecting information from humans and is soon ready to execute its plan.
+            Arnold will destroy the planet if we don't stop it!
+            I need your help, please! I was lucky to get away from it the first time! </p>
           <input class='button' type="button" id="whyme" onclick="Protagonist()" value="why me?">
           <input class='button' type="button" id="imin" onclick="Great()" value="I'm in!">
 
