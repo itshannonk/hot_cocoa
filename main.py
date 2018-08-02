@@ -60,29 +60,13 @@ class Entrance(webapp2.RequestHandler):
         self.response.write(SecPageTemp.render())
 
 # Third game page
-class Watson(webapp2.RequestHandler):
-    def get(self):
-        # Link Handler to webpage
-        ThirdPageTemp = JINJA_ENVIRONMENT.get_template('templates/watson.html')
-
-        # Render page using template
-        self.response.write(ThirdPageTemp.render())
-
-class Searching(webapp2.RequestHandler):
-    def get(self):
-        # Link Handler to webpage
-        FourthPageTemp = JINJA_ENVIRONMENT.get_template('templates/searching.html')
-
-        # Render page using template
-        self.response.write(FourthPageTemp.render())
-
 class Confront(webapp2.RequestHandler):
     def get(self):
         # Link Handler to webpage
-        FifthPageTemp = JINJA_ENVIRONMENT.get_template('templates/confront.html')
+        ThirdPageTemp = JINJA_ENVIRONMENT.get_template('templates/confront.html')
 
         # Render page using template
-        self.response.write(FifthPageTemp.render())
+        self.response.write(ThirdPageTemp.render())
 
 class Gameover(webapp2.RequestHandler):
     def get(self):
@@ -105,6 +89,17 @@ class Win(webapp2.RequestHandler):
         WinTemp = JINJA_ENVIRONMENT.get_template('templates/winpage.html')
 
         self.response.write(WinTemp.render())
+
+class Credits(webapp2.RequestHandler):
+    def get(self):
+        # Link Handler to webpage
+        FinalTemp = JINJA_ENVIRONMENT.get_template('templates/credits.html')
+        self.response.write(FinalTemp.render())
+        # Render page using template
+    def post(self):
+        FinalTemp = JINJA_ENVIRONMENT.get_template('templates/credits.html')
+
+        self.response.write(FinalTemp.render())
 
 # Intitialize webpages:
 app = webapp2.WSGIApplication([
