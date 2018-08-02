@@ -54,6 +54,17 @@
           font-size: 10px;
       }
 
+      /* border styling */
+      .around {
+        /* padding-bottom: 30px; */
+        border-top-style: dashed;
+        border-bottom-color: white;
+        border-bottom-width: 2px;
+        width: 80%;
+        margin-top: 30px;
+        padding-top: 20px;
+      }
+
       input[type="button"]:disabled {
         background-color: black;
         color: #777;
@@ -94,64 +105,88 @@
     <script type="text/javascript">
 
       function driveCar() {
+        document.getElementById('transportborder').style.visibility = "visible";
         document.getElementById("car").disabled = true;
+        // create type writer effect
+        let txt = document.getElementById("car_text").innerHTML;
+        document.getElementById("car_text").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'car_text');
         document.getElementById("hoverboard").style.visibility = "hidden";
-        document.getElementById("car_text").style.visibility = "visible";
-        document.getElementById("go").style.visibility = "visible";
-
       }
 
       function useHoverboard() {
+        document.getElementById('transportborder').style.visibility = "visible";
         document.getElementById("hoverboard").disabled = true;
         document.getElementById("car").style.visibility = "hidden";
-        document.getElementById("car_text").style.visibility = "visible";
-        document.getElementById("car_text").innerHTML = "<br>Uh-oh, using the mind-reading tech <br> in the hoverboard means that we are compromising more of our data <br>to AI-Arnold. This puts us at more risk of it finding us! <br> So let's hurry!";
-        document.getElementById("go").style.visibility = "visible";
+        // type writer
+        document.getElementById("car_text").innerHTML = "";
+        let txt = "Uh-oh, using the mind-reading tech in the hoverboard means that we are compromising more of our data to AI-Arnold.\
+        This puts us at more risk of it finding us! So let's hurry!";
+        i = 0;
+        typeWriter(txt, 'car_text');
       }
 
       function go() {
+        document.getElementById('goborder').style.visibility = "visible";
         document.getElementById("go").disabled = true;
-        document.getElementById("enter").style.visibility = "visible";
-        document.getElementById("front").style.visibility = "visible";
-        document.getElementById("ai").style.visibility = "visible";
+        // typer writer
+        let txt = document.getElementById("enter").innerHTML;
+        document.getElementById("enter").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'enter');
       }
 
       function useFront() {
+        document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("front").disabled = true;
+        // type writer
+        let txt = document.getElementById("car_text").innerHTML;
+        document.getElementById("front_text").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'front_text');
         document.getElementById("ai").style.visibility = "hidden";
-        document.getElementById("front_text").style.visibility = "visible";
-        document.getElementById("door").style.visibility = "visible";
       }
 
       function useBack() {
+        document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("ai").disabled = true;
+        document.getElementById("front_text").innerHTML = "";
+        let txt = "This is good; I was able to blend in with the other AIs\
+                  and we didn't attract much attention.\
+                  The art of subtlety!";
+        i = 0;
+        typeWriter(txt, 'front_text');
         document.getElementById("front").style.visibility = "hidden";
-        document.getElementById("front_text").style.visibility = "visible";
-        document.getElementById("front_text").innerHTML = "<br> This is good; I was able to blend in with the other AIs <br> and we didn't attract much attention. The art of subtlety!";
-        document.getElementById("door").style.visibility = "visible";
       }
 
       function door() {
+        document.getElementById('arnoldborder').style.visibility = "visible";
         document.getElementById("door").disabled = true;
-        document.getElementById("watson").style.visibility = "visible";
-        document.getElementById("no_trust").style.visibility = "visible";
-        document.getElementById("trust").style.visibility = "visible";
       }
 
       function noTrust() {
+        document.getElementById('watsonborder').style.visibility = "visible";
         document.getElementById("no_trust").disabled = true;
         document.getElementById("trust").style.visibility = "hidden";
-        document.getElementById("no_trust_text").style.visibility = "visible";
-        document.getElementById("to_confront").style.visibility = "visible";
+        document.getElementById('trust_text').innerHTML = "<br> Rolo: Goodbye, Watson... <br><br> Ok, let's keep going. </p>"
         sessionStorage.setItem('watson', false);
       }
 
       function trust() {
+        document.getElementById('watsonborder').style.visibility = "visible";
         document.getElementById("trust").disabled = true;
         document.getElementById("no_trust").style.visibility = "hidden";
-        document.getElementById("trust_text").style.visibility = "visible";
-        document.getElementById("to_confront").style.visibility = "visible";
         sessionStorage.setItem('watson', true);
+      }
+
+      // Type writer effect function
+      function typeWriter(txt, id) {
+        if (i < txt.length) {
+          document.getElementById(id).innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, 1, txt, id);
+        }
       }
 
     </script>
@@ -177,10 +212,9 @@
 
       <div class='start'>
         <!-- if player chose CAR -->
-        <div class='around'>
-          <p id="car_text"> <br> Good choice. The self-driving car had the route to AutoMate, <br>
-                      and we didn't need to compromise any more data to AI-Arnold. <br>
-                      Now, let's go! :D</p>
+        <div class='around' id='transportborder'>
+          <p id="car_text"> Good choice. The self-driving car had the route to AutoMate, and we didn't need to compromise any more data to AI-Arnold.
+                            Now, let's go! :D</p>
 
           <!-- if player chose HOVERBOARD -->
           <p id="board_text">  </p>
@@ -188,15 +222,15 @@
         </div>
 
         <!-- decides which entrance to use -->
-        <div class='around'>
-          <p id='enter'> <br> Nice, we're right outside of AutoMate right now. <br>
-                    Our goal is be as subtle as possible and enter the building. </p>
+        <div class='around' id='goborder'>
+          <p id='enter'> Nice, we're right outside of AutoMate right now.
+                         Our goal is be as subtle as possible and enter the building. </p>
           <input class='button' type="button" id="front" onclick="useFront()" value="front entrance">
           <input class='button' type="button" id="ai" onclick="useBack()" value="AI entrance">
         </div>
 
         <!-- if player chose FRONT -->
-        <div class='around'>
+        <div class='around' id='doorborder'>
           <p id="front_text"> <br> Security: What's your ID, AI? <br>
                         Rolo: ...uh, I'm Rolo...and here's my ID <br>
                         Security: I'm going to need you to come inside through <br>
@@ -210,7 +244,7 @@
         </div>
 
         <!-- meeting watson decisons -->
-        <div class='around'>
+        <div class='around' id='arnoldborder'>
           <p id='watson'><br> I see something coming towards us. <br><br>
                     Watson: Hi, my name is Wat-son. <br><br>
                     Oh, another AI! It might be worth it to befriend it, <br>
@@ -222,22 +256,20 @@
         </div>
 
         <!-- if player chose DON'T TRUST -->
-        <p id="no_trust_text"> Rolo: Goodbye, Watson... <br><br>
-                            Ok, let's keep going. </p>
+        <div class='around' id='watsonborder'>
 
-        <!-- if player chose TRUST -->
-        <p id="trust_text"> Rolo: Hi, I'm Rolo. Can you help us?<br><br>
+          <!-- if player chose TRUST -->
+          <p id="trust_text"> Rolo: Hi, I'm Rolo. Can you help us?<br><br>
                         Watson: What do you want to know? <br><br>
                         Rolo: We're looking for...the main room of this building. <br><br>
                         Watson: You can go through this door and look around. <br><br>
                         Rolo: Ok, thanks. ;)</p>
 
+        <!-- Continue link to /Confront page-->
+        <form class="" action="/confront">
+          <button class='button' id='continue' type="sumbit" action='/confront.html'> continue </button>
+        </form>
       </div>
-
-      <!-- Continue link to /Confront page-->
-      <form class="" action="/confront">
-        <button class='button' id='continue' type="sumbit" action='/confront.html'> continue </button>
-      </form>
     </div>
   </body>
 </center>
