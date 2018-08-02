@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title> AI or You </title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <iframe width="0" height="0" src="http://soundimage.org/wp-content/uploads/2014/04/Misty-Bog.mp3?_=6" frameborder="0" allowfullscreen></iframe>
 
   <!-- CSS Styles -->
   <style>
@@ -205,7 +206,7 @@
         if (i < txt.length) {
           document.getElementById(id).innerHTML += txt.charAt(i);
           i++;
-          setTimeout(typeWriter, 60, txt, id, completion);
+          setTimeout(typeWriter, 10, txt, id, completion);
         } else {
           completion();
         }
@@ -268,6 +269,7 @@
             Ever since the boom of techology, Arnold, the evil AI has been collecting information from humans and is soon ready to execute its plan.
             Arnold will destroy the planet if we don't stop it!
             I need your help, please! I was lucky to get away from it the first time! </p>
+          </div>
           <input class='button' type="button" id="whyme" onclick="Protagonist()" value="why me?">
           <input class='button' type="button" id="imin" onclick="Great()" value="I'm in!">
 
