@@ -14,6 +14,11 @@
     visibility: hidden;
   }
 
+  input[type="button"]:disabled {
+    background-color: black;
+    color: #777;
+  }
+
   /* body styling */
   #body {
     font-family: 'Press Start 2P', cursive;
@@ -100,10 +105,6 @@
     <script type='text/javascript' >
       // make button disapear
 
-      //{% if playerName != "" %}
-        //<p id="playerName"> {{playerName}}</p>
-      //{% endif %}
-
       function intro() {
         document.getElementById("appear1").style.visibility = "visible";
         let txt = document.getElementById("appear1").innerHTML; // type writer
@@ -119,6 +120,7 @@
       }
 
       function Location() {
+        document.getElementById("location").disabled = true;
         document.getElementById("pleaseborder").style.visibility = "visible";
         // creat type writer effect
         let txt = document.getElementById("chicken").innerHTML;
@@ -137,6 +139,7 @@
 
 
       function Suspicious() {
+        document.getElementById("suspicious").disabled = true;
         document.getElementById("pleaseborder").style.visibility = "visible";
         document.getElementById("specific").style.visibility = "hidden";
         // create type writer effect
@@ -152,6 +155,7 @@
       }
 
       function Interrupt() {
+        document.getElementById("specific").disabled = true;
         document.getElementById("transmissionborder").style.visibility = "visible";
         let txt = document.getElementById("interrupt").innerHTML; // type writer
         document.getElementById("interrupt").innerHTML = "";
@@ -163,6 +167,7 @@
       }
 
       function Explain() {
+        document.getElementById("explain").disabled = true;
         document.getElementById("explainborder").style.visibility = "visible";
         let txt = document.getElementById("introduce").innerHTML; // type writer
         document.getElementById("introduce").innerHTML = "";
@@ -175,20 +180,22 @@
       }
 
       function Protagonist() {
+        document.getElementById("whyme").disabled = true;
         document.getElementById('missionborder').style.visibility = 'visible';
         // type writer
         let txt = 'Because you\'re the last human that isn\'t controlled by AI Arnold! You need to save yourself and the rest of the world!';
         i = 0;
         function delaybutton4() {
           document.getElementById("continue").style.visibility = "visible";
-
         }
         typeWriter(txt, 'mission', delaybutton4);
         // hide other button option
         document.getElementById("imin").style.visibility = "hidden";
+        Save();
       }
 
       function Great() {
+        document.getElementById("imin").disabled = true;
         document.getElementById('missionborder').style.visibility = "visible";
         // type writer
         let txt = "I knew you'd say that! Let's get started!";
@@ -199,6 +206,7 @@
         typeWriter(txt, 'mission', delaybutton5);
         // hide other button option
         document.getElementById("whyme").style.visibility = "hidden";
+        Save();
       }
 
       // Type writer effect function
@@ -215,14 +223,19 @@
       // Decrease progress bar
       function Decrease() {
         let progress = document.getElementById('animate')
-        progress.style.height = progress.offsetHeight + 25 + 'px'
+        progress.style.height = progress.offsetHeight + 75 + 'px'
       }
 
       // Increase progress bar
       function Increase() {
         let progress = document.getElementById('animate')
-        progress.style.height = progress.offsetHeight -  25 + 'px'
+        progress.style.height = progress.offsetHeight - 75 + 'px'
+      }
 
+      // save Progress
+      function Save() {
+        let progress = document.getElementById('animate');
+        sessionStorage.setItem('progress', progress.offsetHeight);
       }
     </script>
 
