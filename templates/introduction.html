@@ -93,10 +93,11 @@
     float: left;
     padding-top: 150px;
   }
+
   </style>
 </head>
 <center>
-  <body id='body' valign="middle" bgcolor='black'><font color="white">
+  <body onload="intro()" id='body' valign="middle" bgcolor='black'><font color="white">
     <script type='text/javascript' >
       // make button disapear
 
@@ -104,25 +105,49 @@
         //<p id="playerName"> {{playerName}}</p>
       //{% endif %}
 
+      function intro() {
+        document.getElementById("appear1").style.visibility = "visible";
+        let txt = document.getElementById("appear1").innerHTML; // type writer
+        document.getElementById("appear1").innerHTML = "";
+        document.getElementById("location").style.visibility = "hidden";
+        document.getElementById("suspicious").style.visibility = "hidden";
+        i = 0;
+        function delaybutton00() {
+          document.getElementById("location").style.visibility = "visible";
+          document.getElementById("suspicious").style.visibility = "visible";
+        }
+        typeWriter(txt, 'appear1', delaybutton00);
+      }
+
       function Location() {
         document.getElementById("pleaseborder").style.visibility = "visible";
         // creat type writer effect
         let txt = document.getElementById("chicken").innerHTML;
+        document.getElementById("specific").style.visibility = "hidden";
         document.getElementById("chicken").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'chicken');
+        function delaybutton0() {
+            document.getElementById("specific").style.visibility = "visible";
+          };
+
+        typeWriter(txt, 'chicken', delaybutton0);
         Decrease(); // update progress bar
         // hide other button option
         document.getElementById('suspicious').style.visibility = "hidden";
       }
 
+
       function Suspicious() {
         document.getElementById("pleaseborder").style.visibility = "visible";
+        document.getElementById("specific").style.visibility = "hidden";
         // create type writer effect
         let txt = document.getElementById("chicken").innerHTML;
         document.getElementById("chicken").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'chicken');
+        function delaybutton1() {
+          document.getElementById("specific").style.visibility = "visible";
+        }
+        typeWriter(txt, 'chicken', delaybutton1);
         Increase(); // update progress bar
         document.getElementById('location').style.visibility = "hidden";
       }
@@ -132,7 +157,10 @@
         let txt = document.getElementById("interrupt").innerHTML; // type writer
         document.getElementById("interrupt").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'interrupt');
+        function delaybutton2() {
+          document.getElementById("explain").style.visibility = "visible";
+        }
+        typeWriter(txt, 'interrupt', delaybutton2);
       }
 
       function Explain() {
@@ -140,7 +168,11 @@
         let txt = document.getElementById("introduce").innerHTML; // type writer
         document.getElementById("introduce").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'introduce');
+        function delaybutton3() {
+          document.getElementById("whyme").style.visibility = "visible";
+          document.getElementById("imin").style.visibility = "visible";
+        }
+        typeWriter(txt, 'introduce', delaybutton3);
       }
 
       function Protagonist() {
@@ -148,7 +180,11 @@
         // type writer
         let txt = 'Because you\'re the last human that isn\'t controlled by AI! You need to save yourself and the rest of the world!';
         i = 0;
-        typeWriter(txt, 'mission');
+        function delaybutton4() {
+          document.getElementById("continue").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'mission', delaybutton4);
         // hide other button option
         document.getElementById("imin").style.visibility = "hidden";
       }
@@ -158,17 +194,22 @@
         // type writer
         let txt = "I knew you'd say that! Let's get started!";
         i = 0;
-        typeWriter(txt, 'mission');
+        function delaybutton5() {
+          document.getElementById("continue").style.visibility = "visible";
+        }
+        typeWriter(txt, 'mission', delaybutton5);
         // hide other button option
         document.getElementById("whyme").style.visibility = "hidden";
       }
 
       // Type writer effect function
-      function typeWriter(txt, id) {
+      function typeWriter(txt, id, completion) {
         if (i < txt.length) {
           document.getElementById(id).innerHTML += txt.charAt(i);
           i++;
-          setTimeout(typeWriter, 60, txt, id);
+          setTimeout(typeWriter, 60, txt, id, completion);
+        } else {
+          completion();
         }
       }
 
@@ -202,7 +243,7 @@
     <!-- Ai asks user for location -->
     <div id='sideprogress'>
       <div id='appear'>
-        <p> where are you right now? </p>
+        <p id="appear1"> where are you right now? </p>
         <input class='button' type="button" id='suspicious' onclick="Suspicious()" value="why do you want to know?">
         <input class='button' type="button" id='location' onclick="Location()" value="share location">
       </div>
@@ -212,15 +253,16 @@
       <!-- Ai asks to be specific -->
         <div class='around' id='pleaseborder'>
           <p id='chicken'> please be more specific </p>
-          <input class='button' type="button" id="specific" onclick="Interrupt()" value="who are you?">
-        </div>
+          </div>
+          <input class='button' type="button" id="specific" onclick="Interrupt()" value="who are you?" visibility="hidden">
+
 
       <!-- Transmission is interrupted -->
         <div class='around' id='transmissionborder'>
           <p id='interrupt'> *the transmission has been interrupted*
             I'm so glad I got to you on time! You're my only hope! </p>
-          <input class='button' type="button" id="explain" onclick="Explain()" value="what's going on?">
-        </div>
+            </div>
+          <input class='button' type="button" id="explain" onclick="Explain()" value="what's going on?" visibility="hidden">
 
       <!-- Good AI explains plot to the user -->
         <div class='around' id='explainborder'>
@@ -228,16 +270,17 @@
             Ever since the boom of techology, Arnold, the evil AI has been collecting information about humans and are soon ready to execute their plan.
             They'll destroy the planet if we don't stop them!
              I need your help, please! I was lucky to get away from them the first time! </p>
+             </div>
           <input class='button' type="button" id="whyme" onclick="Protagonist()" value="why me?">
           <input class='button' type="button" id="imin" onclick="Great()" value="I'm in!">
-        </div>
+
 
         <!-- This response depends on what the user chooses above -->
         <div class='around' id='missionborder'>
           <p id='mission'> </p>
           <form class="" action="/entrance" method="post">
-          <button class='button' id='continue' type="sumbit" action='/entrance.html'> continue </button>
-        </div>
+            </div>
+          <button class='button' id='continue' type="sumbit" action='/entrance.html' visibility="hidden"> continue </button>
         </form>
       </div>
     </div>
