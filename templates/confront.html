@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title> AI or You </title>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <iframe width="0" height="0" src="https://s1.vocaroo.com/media/download_temp/Vocaroo_s18EoxiFVZda.mp3" frameborder="0" allowfullscreen></iframe>
 
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <style media="screen">
       .crosshair {cursor: crosshair;}
 
@@ -100,8 +101,22 @@
     </style>
   </head>
   <center>
-  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black" class='crosshair'><font color="white">
+  <body onload="UpdateProg(); introToConfront();" id='body' align="middle" bgcolor="black" class='crosshair'><font color="white">
     <script type="text/javascript">
+
+      function introToConfront() {
+        document.getElementById("introToCon").style.visibility = "visible";
+        let txt = document.getElementById("introToCon").innerHTML; // type writer
+        document.getElementById("introToCon").innerHTML = "";
+        document.getElementById("office").style.visibility = "hidden";
+        document.getElementById("closet").style.visibility = "hidden";
+        i = 0;
+        function delaybutton20() {
+          document.getElementById("office").style.visibility = "visible";
+          document.getElementById("closet").style.visibility = "visible";
+        }
+        typeWriter(txt, 'introToCon', delaybutton20);
+      }
 
       function UpdateProg () {
         let progress = document.getElementById('animate');
@@ -112,11 +127,16 @@
         document.getElementById('officeborder').style.visibility = 'visible';
         document.getElementById('closet2').style.visibility = 'visible';
         document.getElementById("office").disabled = true;
+        document.getElementById("closet2").style.visibility = "hidden";
+
         // create type writer effect
         let txt = document.getElementById("office_text").innerHTML;
         document.getElementById("office_text").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'office_text');
+        function delaybutton21() {
+          document.getElementById("closet2").style.visibility = "visible";
+        }
+        typeWriter(txt, 'office_text', delaybutton21);
         document.getElementById("closet").style.visibility = "hidden";
         Decrease();
       }
@@ -125,45 +145,65 @@
         document.getElementById('officeborder').style.visibility = "visible";
         document.getElementById("closet").disabled = true;
         document.getElementById("office").style.visibility = "hidden";
-        document.getElementById('ready').style.visibility = 'visible';
+        document.getElementById('ready').style.visibility = 'hidden';
         // create type writer effect
         let txt = "Wow, the closet is a very low-key place. \n I wonder what's in the back... \n\n Check it out! There's a tunnel in here! :o \n Let's go in! Ready?"
         document.getElementById("office_text").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'office_text');
+        function delaybutton22() {
+          document.getElementById("ready").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'office_text', delaybutton22);
         Increase();
       }
 
       function inCloset2() {
         document.getElementById('closetborder').style.visibility = 'visible';
         document.getElementById("closet2").disabled = true;
+        document.getElementById('ready').style.visibility = 'hidden';
+
         // create type writer effect
         let txt = "Wow, the closet is a very low-key place. \n I wonder what's in the back... \n\n Check it out! There's a tunnel in here! :o \n Let's go in! Ready?"
         document.getElementById("closet_text").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'closet_text');
-        document.getElementById('ready').style.visibility = "visible";
+        function delaybutton23() {
+          document.getElementById('ready').style.visibility = 'visible';
+        }
+        typeWriter(txt, 'closet_text', delaybutton23);
       }
 
       function ready() {
         document.getElementById('arnoldborder').style.visibility = "visible";
         document.getElementById("ready").disabled = true;
+        document.getElementById('unplug').style.visibility = 'hidden';
+        document.getElementById('question').style.visibility = 'hidden';
         let txt = document.getElementById("arnold").innerHTML;
         document.getElementById("arnold").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'arnold');
+        function delaybutton24() {
+          document.getElementById('question').style.visibility = 'visible';
+          document.getElementById('unplug').style.visibility = 'visible';
+
+        }
+        typeWriter(txt, 'arnold', delaybutton24);
       }
 
       function goUnplug() {
         document.getElementById('confront').style.visibility = "visible";
         document.getElementById("unplug").disabled = true;
-        document.getElementById("question").style.visibility = "hidden";
+        document.getElementById("to_endgame1").style.visibility = "hidden";
 
         if (sessionStorage.getItem('watson') === "true") {
           document.getElementById("result_text").innerHTML = "";
+          document.getElementById("question").style.visibility = "hidden";
           let txt = "Ok, here I go...! \n\n AI Arnold: What do you think you’re doing? \n\n Nooo, I was so close! Arnold’s coming for me now! \n . \n . \n . \n Wait, what happened? Arnold is freezing… Watson…? \n\n Watson: Yes, I was able to unplug him. \n\n Rolo: That’s amazing… I knew it was a good idea to be friends with him. (*^▽^*)";
           i = 0;
-          typeWriter(txt, 'result_text');
+          function delaybuton26() {
+            document.getElementById("to_endgame1").style.visibility = "visible";
+
+          }
+          typeWriter(txt, 'result_text', delaybutton26);
           document.getElementById("to_endgame1").style.visibility = "hidden";
         } else {
           document.getElementById("result_text").innerHTML = "";
@@ -178,24 +218,36 @@
         document.getElementById('confront').style.visibility = "visible";
         document.getElementById("question").disabled = true;
         document.getElementById("unplug").style.visibility = "hidden";
+        document.getElementById("to_endgame2").style.visibility = "hidden";
+
         let txt = document.getElementById("result_text").innerHTML;
         document.getElementById("result_text").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'result_text');
+        function delaybutton25() {
+          document.getElementById("to_endgame2").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'result_text', delaybutton25);
         document.getElementById("to_endgame1").style.visibility = "hidden";
       }
 
       // Type writer effect function
-      function typeWriter(txt, id) {
+      function typeWriter(txt, id, completion) {
         if (i < txt.length) {
           if (txt.charAt(i) === '\n') {
             document.getElementById(id).innerHTML += ' <br> ';
+            i++;
+            setTimeout(typeWriter, 1, txt, id, completion);
           } else {
             document.getElementById(id).innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, 1, txt, id, completion);
           }
-          i++;
-          setTimeout(typeWriter, 40, txt, id);
+        } else {
+          completion()
+
         }
+
       }
 
       // Decrease progress bar
@@ -231,9 +283,9 @@
 
     <div id='sideprogress'>
       <!-- decides how to look for  -->
-      <p> Now that we're inside AutoMate and have gotten past other AIs, <br>
-        we can finally look for Arnold! <br>
-        It seems like there are two places we can go <br>
+      <p id='introToCon'> Now that we're inside AutoMate and have gotten past other AIs,
+        we can finally look for Arnold!
+        It seems like there are two places we can go
         to search for a way to know Arnold's location.</p>
       <input class='button' type="button" id="office" onclick="inOffice()" value="AI Offices">
       <input class='button' type="button" id="closet" onclick="inCloset()" value="janitor's closet">
