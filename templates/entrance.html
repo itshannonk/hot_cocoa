@@ -87,6 +87,7 @@
         height: 250px;
         position: absolute;
         background: black;
+        max-height: 500px;
       }
 
       /* progress bar stuff */
@@ -289,7 +290,7 @@
           } else {
             document.getElementById(id).innerHTML += txt.charAt(i);
             i++;
-            setTimeout(typeWriter, 1, txt, id, completion);
+            setTimeout(typeWriter, 40, txt, id, completion);
           }
         } else {
           completion()
@@ -396,7 +397,7 @@
                         Rolo: We're looking for...the main room of this building.
 
                         Watson: You can go through this door and look around.
-                        
+
                         Rolo: Ok, thanks. ;)</p>
 
         <!-- Continue link to /Confront page-->

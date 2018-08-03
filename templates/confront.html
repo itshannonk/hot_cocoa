@@ -82,6 +82,7 @@
         height: 250px;
         position: absolute;
         background: black;
+        max-height: 500px;
       }
 
       /* progress bar stuff */
@@ -193,7 +194,7 @@
             document.getElementById(id).innerHTML += txt.charAt(i);
           }
           i++;
-          setTimeout(typeWriter, 1, txt, id);
+          setTimeout(typeWriter, 40, txt, id);
         }
       }
 
@@ -248,7 +249,7 @@
 
                           Another AI: ... You don't have access to this part of the building.
                           You need to go back outside.
-                          
+
                           Oh no, this reroute cost us! Now, our presence is more suspicious. </p>
         </div>
           <input class='button' type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
