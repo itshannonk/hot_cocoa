@@ -103,8 +103,22 @@
     </style>
   </head>
   <center>
-  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black"><font color="white">
+  <body onload="UpdateProg(); introduction();" id='body' align="middle" bgcolor="black"><font color="white">
     <script type="text/javascript">
+
+      function introduction() {
+        document.getElementById("introToEnt").style.visibility = "visible";
+        let txt = document.getElementById("introToEnt").innerHTML; // type writer
+        document.getElementById("introToEnt").innerHTML = "";
+        document.getElementById("car").style.visibility = "hidden";
+        document.getElementById("hoverboard").style.visibility = "hidden";
+        i = 0;
+        function delaybutton99() {
+          document.getElementById("car").style.visibility = "visible";
+          document.getElementById("hoverboard").style.visibility = "visible";
+        }
+        typeWriter(txt, 'introToEnt', delaybutton99);
+      }
 
       function UpdateProg () {
         let progress = document.getElementById('animate');
@@ -117,8 +131,13 @@
         // create type writer effect
         let txt = document.getElementById("car_text").innerHTML;
         document.getElementById("car_text").innerHTML = "";
+        document.getElementById("go").style.visibility = "hidden";
+
         i = 0;
-        typeWriter(txt, 'car_text');
+        function delaybutton98() {
+          document.getElementById("go").style.visibility = "visible";
+      }
+        typeWriter(txt, 'car_text', delaybutton98);
         document.getElementById("hoverboard").style.visibility = "hidden";
         Increase();
       }
@@ -132,23 +151,37 @@
         let txt = "Uh-oh, using the mind-reading tech in the hoverboard means that we are compromising more of our data to AI-Arnold.\
         This puts us at more risk of it finding us! So let's hurry!";
         i = 0;
-        typeWriter(txt, 'car_text');
+        function delaybutton97() {
+          document.getElementById("go").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'car_text', delaybutton97);
         Decrease();
       }
 
       function go() {
         document.getElementById('goborder').style.visibility = "visible";
         document.getElementById("go").disabled = true;
+        document.getElementById("ai").style.visibility = "hidden";
+        document.getElementById("front").style.visibility = "hidden";
+
         // typer writer
         let txt = document.getElementById("enter").innerHTML;
         document.getElementById("enter").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'enter');
+        function delaybutton96() {
+          document.getElementById("ai").style.visibility = "visible";
+          document.getElementById("front").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'enter', delaybutton96);
       }
 
       function useFront() {
         document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("front").disabled = true;
+        document.getElementById("door").style.visibility = "hidden";
+
         // type writer
         document.getElementById("front_text").innerHTML = "";
         let txt = "Security: What's your ID, AI? \n Rolo: ...uh, I'm Rolo.. and here's my ID\n\
@@ -156,7 +189,11 @@
                   ...\n\
                   Looks like we just attracted more attention to our opperation :|"
         i = 0;
-        typeWriter(txt, 'front_text');
+        function delaybutton95() {
+          document.getElementById("door").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'front_text', delaybutton95);
         document.getElementById("ai").style.visibility = "hidden";
         Decrease();
       }
@@ -164,22 +201,35 @@
       function useBack() {
         document.getElementById('doorborder').style.visibility = "visible";
         document.getElementById("ai").disabled = true;
+        document.getElementById("door").style.visibility = "hidden";
+
         // type writer
         let txt = document.getElementById("front_text").innerHTML;
         document.getElementById("front_text").innerHTML = "";
         i = 0;
-        typeWriter(txt, 'front_text');
+        function delaybutton94() {
+          document.getElementById("door").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'front_text', delaybutton94);
         document.getElementById("front").style.visibility = "hidden";
         Increase();
       }
 
       function door() {
         document.getElementById('arnoldborder').style.visibility = "visible";
+        document.getElementById("no_trust").style.visibility = "hidden";
+        document.getElementById("trust").style.visibility = "hidden";
         // type writer
         let txt = document.getElementById('watson').innerHTML;
         document.getElementById('watson').innerHTML = "";
         i = 0;
-        typeWriter(txt, 'watson');
+        function delaybutton93() {
+          document.getElementById("no_trust").style.visibility = "visible";
+          document.getElementById("trust").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'watson', delaybutton93);
         document.getElementById("door").disabled = true;
       }
 
@@ -187,38 +237,55 @@
         document.getElementById('watsonborder').style.visibility = "visible";
         document.getElementById("no_trust").disabled = true;
         document.getElementById("trust").style.visibility = "hidden";
+        document.getElementById("continue").style.visibility = "hidden";
+
         // type writer
         let txt = "Rolo: Goodbye, Watson... \n\n Ok, let's keep going.";
         document.getElementById('trust_text').innerHTML =  "";
         i = 0;
-        typeWriter(txt, 'trust_text');
+        function delaybutton92() {
+          document.getElementById("continue").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'trust_text', delaybutton92);
         sessionStorage.setItem('watson', false);
       }
 
       function trust() {
         document.getElementById('watsonborder').style.visibility = "visible";
         document.getElementById("trust").disabled = true;
+        document.getElementById("continue").style.visibility = "hidden";
+
         // type writer
         let txt = document.getElementById('trust_text').innerHTML;
         document.getElementById('trust_text').innerHTML = '';
         i = 0;
-        typeWriter(txt, 'trust_text');
+        function delaybutton91() {
+          document.getElementById("continue").style.visibility = "visible";
+
+        }
+        typeWriter(txt, 'trust_text', delaybutton91);
         document.getElementById("no_trust").style.visibility = "hidden";
         sessionStorage.setItem('watson', true);
         Increase();
       }
 
       // Type writer effect function
-      function typeWriter(txt, id) {
+      function typeWriter(txt, id, completion) {
         if (i < txt.length) {
           if (txt.charAt(i) === '\n') {
             document.getElementById(id).innerHTML += ' <br> ';
+            i++;
+            setTimeout(typeWriter, 1, txt, id, completion);
           } else {
             document.getElementById(id).innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, 1, txt, id, completion);
           }
-          i++;
-          setTimeout(typeWriter, 1, txt, id);
+        } else {
+          completion()
         }
+
       }
 
       // Decrease progress bar
@@ -253,8 +320,8 @@
 
     <!-- player decides how to get to AutoMate building -->
     <div id='sideprogress'>
-      <p><br> Ok, we don't have a lot of time! <br>
-        First we need to get to the AutoMate building where Arnold was created. <br>
+      <p id='introToEnt'> Ok, we don't have a lot of time!
+        First we need to get to the AutoMate building where Arnold was created.
         It's pretty far, and we have two ways to get there.</p>
       <input class='button' type="button" id="car" onclick="driveCar()" value="self-driving car with gps system">
       <input class='button' type="button" id="hoverboard" onclick="useHoverboard()" value="hoverboard you control with your mind">
@@ -264,19 +331,20 @@
         <div class='around' id='transportborder'>
           <p id="car_text"> Good choice. The self-driving car had the route to AutoMate, and we didn't need to compromise any more data to AI-Arnold.
                             Now, let's go! :D</p>
-
-          <!-- if player chose HOVERBOARD -->
-          <p id="board_text">  </p>
-          <input class='button' type="button" id="go" onclick="go()" value="keep going">
         </div>
+          <!-- if player chose HOVERBOARD -->
+          <!-- <p id="board_text">  </p> -->
+          <input class='button' type="button" id="go" onclick="go()" value="keep going">
+
 
         <!-- decides which entrance to use -->
         <div class='around' id='goborder'>
           <p id='enter'> Nice, we're right outside of AutoMate right now.
                          Our goal is be as subtle as possible and enter the building. </p>
+          </div>
           <input class='button' type="button" id="front" onclick="useFront()" value="front entrance">
           <input class='button' type="button" id="ai" onclick="useBack()" value="AI entrance">
-        </div>
+
 
         <!-- if player chose FRONT -->
         <div class='around' id='doorborder'>
@@ -320,6 +388,7 @@
         </form>
       </div>
     </div>
+  </div>
   </body>
 </center>
 </html>
