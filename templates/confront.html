@@ -192,6 +192,7 @@
       function goUnplug() {
         document.getElementById('confront').style.visibility = "visible";
         document.getElementById("unplug").disabled = true;
+        document.getElementById('question').style.visibility = 'hidden';
         document.getElementById("to_endgame1").style.visibility = "hidden";
 
         if (sessionStorage.getItem('watson') === "true") {
@@ -210,7 +211,7 @@
           let txt = "Ok, here I go...! \n . \n . \n . \n AI Arnold: What do you think you’re doing? \n\n Nooo, I was so close! Arnold could anticipate my move! \n\n It’s too late…  T^T";
           i = 0;
           typeWriter(txt, 'result_text');
-          document.getElementById("to_endgame2").style.visibility = "hidden";
+          document.getElementById("to_endgame2").style.visibility = "visible";
         }
       }
 
