@@ -286,11 +286,11 @@
           if (txt.charAt(i) === '\n') {
             document.getElementById(id).innerHTML += ' <br> ';
             i++;
-            setTimeout(typeWriter, 40, txt, id, completion);
+            setTimeout(typeWriter, 55, txt, id, completion);
           } else {
             document.getElementById(id).innerHTML += txt.charAt(i);
             i++;
-            setTimeout(typeWriter, 1, txt, id, completion);
+            setTimeout(typeWriter, 55, txt, id, completion);
           }
         } else {
           completion()
