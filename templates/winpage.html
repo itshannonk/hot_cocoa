@@ -1,4 +1,7 @@
 <head>
+  <title> AI or You </title>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
 <style>
 body {
   background: black;
@@ -11,9 +14,22 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "courier new";
-  font-size: 70px;
+  font-size: 50px;
   white-space: nowrap;
   text-shadow: 0 2px 2px rgba(#000, 0.9);
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* button styling */
+.button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: maroon;
+    color: white;
+    padding: 15px;
+    border-style: double;
+    border-width: 3px;
+    font-weight: lighter;
+    font-size: 10px;
 }
 
 </style>
@@ -123,3 +139,9 @@ var messenger = new Messenger($('#messenger'));
 
 </script>
 </head>
+
+<body>
+  <form action='/credits'>
+    <center><button class="button" class='start' id='to_credits' type="sumbit" action='/credits.html'> credits </button></center>
+  </form>
+</body>

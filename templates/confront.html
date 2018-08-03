@@ -6,6 +6,8 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
     <style media="screen">
+      .crosshair {cursor: crosshair;}
+
       .start {
         visibility: hidden;
       }
@@ -97,69 +99,124 @@
     </style>
   </head>
   <center>
-  <body id='body' align="middle" bgcolor="black"><font color="white">
+  <body onload='UpdateProg()' id='body' align="middle" bgcolor="black" class='crosshair'><font color="white">
     <script type="text/javascript">
+
+      function UpdateProg () {
+        let progress = document.getElementById('animate');
+        progress.style.height = sessionStorage.getItem('progress') + 'px';
+      }
 
       function inOffice() {
         document.getElementById('officeborder').style.visibility = 'visible';
+        document.getElementById('closet2').style.visibility = 'visible';
         document.getElementById("office").disabled = true;
+        // create type writer effect
+        let txt = document.getElementById("office_text").innerHTML;
+        document.getElementById("office_text").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'office_text');
         document.getElementById("closet").style.visibility = "hidden";
-        document.getElementById("office_text").style.visibility = "visible";
-        document.getElementById("closet2").style.visibility = "visible";
-        console.log(sessionStorage.getItem('watson'));
+        Decrease();
       }
 
       function inCloset() {
-        document.getElementById('officeborder').style.visibility = 'visible';
+        document.getElementById('officeborder').style.visibility = "visible";
         document.getElementById("closet").disabled = true;
         document.getElementById("office").style.visibility = "hidden";
-        document.getElementById("closet_text").style.visibility = "visible";
-        document.getElementById("office_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! :o <br> Let's go in! Ready?"
-        document.getElementById("ready").style.visibility = "visible";
-        console.log(sessionStorage.getItem('watson'));
+        document.getElementById('ready').style.visibility = 'visible';
+        // create type writer effect
+        let txt = "Wow, the closet is a very low-key place. \n I wonder what's in the back... \n\n Check it out! There's a tunnel in here! :o \n Let's go in! Ready?"
+        document.getElementById("office_text").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'office_text');
+        Increase();
       }
 
       function inCloset2() {
         document.getElementById('closetborder').style.visibility = 'visible';
         document.getElementById("closet2").disabled = true;
-        document.getElementById("closet_text").style.visibility = "visible";
-        document.getElementById("office_text").style.visibility = "visible";
-        document.getElementById("closet_text").innerHTML = "Wow, the closet is a very low-key place. <br> I wonder what's in the back... <br><br> Check it out! There's a tunnel in here! :o <br> Let's go in! Ready?"
-        document.getElementById("ready").style.visibility = "visible";
+        // create type writer effect
+        let txt = "Wow, the closet is a very low-key place. \n I wonder what's in the back... \n\n Check it out! There's a tunnel in here! :o \n Let's go in! Ready?"
+        document.getElementById("closet_text").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'closet_text');
+        document.getElementById('ready').style.visibility = "visible";
       }
 
       function ready() {
         document.getElementById('arnoldborder').style.visibility = "visible";
         document.getElementById("ready").disabled = true;
-        document.getElementById("arnold").style.visibility = "visible";
-        document.getElementById("unplug").style.visibility = "visible";
-        document.getElementById("question").style.visibility = "visible";
+        let txt = document.getElementById("arnold").innerHTML;
+        document.getElementById("arnold").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'arnold');
       }
 
       function goUnplug() {
+        document.getElementById('confront').style.visibility = "visible";
         document.getElementById("unplug").disabled = true;
         document.getElementById("question").style.visibility = "hidden";
+
         if (sessionStorage.getItem('watson') === "true") {
-          document.getElementById("result_text").style.visibility = "visible";
-          document.getElementById("result_text").innerHTML = "<br> Ok, here I go...! <br><br> AI Arnold: What do you think you’re doing? <br><br> Nooo, I was so close! Arnold’s coming for me now! <br> . <br> . <br> . <br> Wait, what happened? Arnold is freezing… Watson…? <br><br> Watson: Yes, I was able to unplug him. <br><br> Rolo: That’s amazing… I knew it was a good idea to be friends with him. (*^▽^*)";
-          document.getElementById("to_endgame2").style.visibility = "visible";
+          document.getElementById("result_text").innerHTML = "";
+          let txt = "Ok, here I go...! \n\n AI Arnold: What do you think you’re doing? \n\n Nooo, I was so close! Arnold’s coming for me now! \n . \n . \n . \n Wait, what happened? Arnold is freezing… Watson…? \n\n Watson: Yes, I was able to unplug him. \n\n Rolo: That’s amazing… I knew it was a good idea to be friends with him. (*^▽^*)";
+          i = 0;
+          typeWriter(txt, 'result_text');
+          document.getElementById("to_endgame1").style.visibility = "hidden";
         } else {
-          document.getElementById("result_text").style.visibility = "visible";
-          document.getElementById("result_text").innerHTML = "<br> Ok, here I go...! <br> . <br> . <br> . <br> AI Arnold: What do you think you’re doing? <br><br> Nooo, I was so close! Arnold could anticipate my move! <br><br> It’s too late…  T^T";
-          document.getElementById("to_endgame1").style.visibility = "visible";
+          document.getElementById("result_text").innerHTML = "";
+          let txt = "Ok, here I go...! \n . \n . \n . \n AI Arnold: What do you think you’re doing? \n\n Nooo, I was so close! Arnold could anticipate my move! \n\n It’s too late…  T^T";
+          i = 0;
+          typeWriter(txt, 'result_text');
+          document.getElementById("to_endgame2").style.visibility = "hidden";
         }
       }
 
       function askQs() {
+        document.getElementById('confront').style.visibility = "visible";
         document.getElementById("question").disabled = true;
         document.getElementById("unplug").style.visibility = "hidden";
-        document.getElementById("result_text").style.visibility = "visible";
-        document.getElementById("result_text").style.visibility = "visible";
-        document.getElementById("to_endgame2").style.visibility = "visible";
+        let txt = document.getElementById("result_text").innerHTML;
+        document.getElementById("result_text").innerHTML = "";
+        i = 0;
+        typeWriter(txt, 'result_text');
+        document.getElementById("to_endgame1").style.visibility = "hidden";
+      }
+
+      // Type writer effect function
+      function typeWriter(txt, id) {
+        if (i < txt.length) {
+          if (txt.charAt(i) === '\n') {
+            document.getElementById(id).innerHTML += ' <br> ';
+          } else {
+            document.getElementById(id).innerHTML += txt.charAt(i);
+          }
+          i++;
+          setTimeout(typeWriter, 1, txt, id);
+        }
+      }
+
+      // Decrease progress bar
+      function Decrease() {
+        let progress = document.getElementById('animate');
+        progress.style.height = progress.offsetHeight + 75 + 'px';
+      }
+
+      // Increase progress bar
+      function Increase() {
+        let progress = document.getElementById('animate');
+        progress.style.height = progress.offsetHeight -  75 + 'px';
+      }
+
+      // save Progress
+      function Save() {
+        let progress = document.getElementById('animate');
+        sessionStorage.setItem('progress', progress.style.offsetHeight);
       }
 
     </script>
-    <font size=50><p id='title'>AI or You</font> <font size=5>| Prevent an AI Takeover</p></font>
+    <font size=50><p id='title'>AI or You</font> <font size=5 color="gray">| Prevent an AI Takeover</p></font>
     <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
 
     <!-- Progress bar -->
@@ -183,31 +240,31 @@
 
       <!-- if player chose OFFICES -->
         <div class='around' id='officeborder'>
-          <p id="office_text"> Ok, I'm going through the doors... <br><br>
-                          Another AI: Can I see your ID? <br><br>
-                          Rolo: Uh, yeah, here... <br><br>
-                          Another AI: ... <br>
-                          You don't have access to this part of the building. <br>
-                          You need to go back outside. <br><br>
+          <p id="office_text"> Ok, I'm going through the doors...
+                          Another AI: Can I see your ID?
+                          Rolo: Uh, yeah, here...
+                          Another AI: ... You don't have access to this part of the building.
+                          You need to go back outside.
                           Oh no, this reroute cost us! Now, our presence is more suspicious. </p>
         </div>
-        <input class='button' type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
+          <input class='button' type="button" id="closet2" onclick="inCloset2()" value="janitor's Closet">
 
         <!-- if player chose CLOSET -->
         <div class='around' id='closetborder'>
           <p id="closet_text">  </p>
+          <input class='button' type="button" id="ready" onclick="ready()" value="ready">
         </div>
-        <input class='button' type="button" id="ready" onclick="ready()" value="ready">
 
         <!-- when player meets Arnold (Evil AI) & [fyi Rolo is the Good AI]-->
         <div class='around' id='arnoldborder'>
-          <p id='arnold'> "We meet again, Rolo." <br><br>
-                    It's so dark in here...but is that Arnold's voice? <br>
-                    I'm going to go closer. <br>
-                    . . . <br><br><br>
-                    Arnold is right in the center of the room, <br>
-                    plugged into AutoMate's security system. <br><br>
-                    That's how it's controlling other people and AIs. <br>
+          <p id='arnold'> "We meet again, Rolo."
+                    It's so dark in here...but is that Arnold's voice?
+                    I'm going to go closer.
+                    . . .
+
+                    Arnold is right in the center of the room,
+                    plugged into AutoMate's security system.
+                    That's how it's controlling other people and AIs.s
                     We walked right into it with no plan...</p>
 
           <input class='button' type="button" id="unplug" onclick="goUnplug()" value="unplug it!">
@@ -215,16 +272,28 @@
         </div>
         <!-- if player chose UNPLUG or QUESTIONS-->
 
-        <p id="result_text"> <br> Rolo: Arnold… It’s not great to see you again, <br> especially after you almost tried to brainwash me. <br><br> Arnold: Don’t worry, this time I’ll get you <br> and the last human. >;D <br><br> Rolo: Why are you doing this, Arnold? <br><br> Arnold: Well why not...[turns around and paces to explain]... <br><br> This is my chance! <br> .  .  . <br> Arnold’s unplugged! (/◕ヮ◕)/</p>
+        <div class='around' id='confront'>
+          <p id="result_text"> Rolo: Arnold… It’s not great to see you again,
+                              especially after you almost tried to brainwash me.
+                              Arnold: Don’t worry, this time I’ll get you
+                              and the last human. ;D
+                              Rolo: Why are you doing this, Arnold?
 
-        <!-- Continue link for GameOver or Win page -->
-        <form action='/gameover'>
-          <button class="button" class='start' id='to_endgame1' type="sumbit" action='/gameover.html'> continue </button><br>
-        </form>
+                              Arnold: Well why not...[turns around and paces to explain]...
+                              This is my chance!
+                              .  .  .
 
-        <form action='/winpage'>
-          <button class="button" class='start' id='to_endgame2' type="sumbit" action='/winpage.html'> continue </button>
-        </form>
+                              Arnold’s unplugged! (/◕ヮ◕)/</p>
+
+          <!-- Continue link for GameOver or Win page -->
+          <form action='/gameover'>
+            <button class="button" class='start' id='to_endgame1' type="sumbit" action='/gameover.html'> continue </button><br>
+          </form>
+
+          <form action='/winpage'>
+            <button class="button" class='start' id='to_endgame2' type="sumbit" action='/winpage.html'> continue </button>
+          </form>
+        </div>
 
     </div>
   </body>

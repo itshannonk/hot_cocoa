@@ -7,6 +7,8 @@
     <iframe width="0" height="0" src="http://soundimage.org/wp-content/uploads/2014/04/Fantasy_Game_Background.mp3?_=2" frameborder="0" allowfullscreen></iframe>
 
     <style media="screen">
+      .crosshair {cursor: crosshair;}
+
       .start {
         visibility: hidden;
       }
@@ -103,7 +105,8 @@
     </style>
   </head>
   <center>
-  <body onload="UpdateProg(); introduction();" id='body' align="middle" bgcolor="black"><font color="white">
+
+  <body onload="UpdateProg(); introduction();" id='body' align="middle" bgcolor="black" class='crosshair'><font color="white">
     <script type="text/javascript">
 
       function introduction() {
@@ -119,7 +122,7 @@
         }
         typeWriter(txt, 'introToEnt', delaybutton99);
       }
-
+      
       function UpdateProg () {
         let progress = document.getElementById('animate');
         progress.style.height = sessionStorage.getItem('progress') + 'px';
@@ -156,6 +159,7 @@
 
         }
         typeWriter(txt, 'car_text', delaybutton97);
+
         Decrease();
       }
 
@@ -218,8 +222,10 @@
 
       function door() {
         document.getElementById('arnoldborder').style.visibility = "visible";
+
         document.getElementById("no_trust").style.visibility = "hidden";
         document.getElementById("trust").style.visibility = "hidden";
+
         // type writer
         let txt = document.getElementById('watson').innerHTML;
         document.getElementById('watson').innerHTML = "";
@@ -239,6 +245,7 @@
         document.getElementById("trust").style.visibility = "hidden";
         document.getElementById("continue").style.visibility = "hidden";
 
+
         // type writer
         let txt = "Rolo: Goodbye, Watson... \n\n Ok, let's keep going.";
         document.getElementById('trust_text').innerHTML =  "";
@@ -248,6 +255,7 @@
 
         }
         typeWriter(txt, 'trust_text', delaybutton92);
+
         sessionStorage.setItem('watson', false);
       }
 
@@ -265,6 +273,7 @@
 
         }
         typeWriter(txt, 'trust_text', delaybutton91);
+
         document.getElementById("no_trust").style.visibility = "hidden";
         sessionStorage.setItem('watson', true);
         Increase();
@@ -284,6 +293,7 @@
           }
         } else {
           completion()
+
         }
 
       }
@@ -293,6 +303,7 @@
         let progress = document.getElementById('animate');
         progress.style.height = progress.offsetHeight + 75 + 'px';
       }
+
 
       // Increase progress bar
       function Increase() {
@@ -306,7 +317,7 @@
         sessionStorage.setItem('progress', progress.style.offsetHeight);
       }
     </script>
-    <font size=50><p id='title'>AI or You </font> <font size=5>| Prevent AI Takeover</p></font>
+    <font size=50><p id='title'>AI or You </font> <font size=5 color="gray">| Prevent AI Takeover</p></font>
     <img id='gif' src="https://blog.sciencemuseum.org.uk/wp-content/uploads/2017/10/Space-Invaders.gif" alt="">
 
     <!-- Progress bar -->
