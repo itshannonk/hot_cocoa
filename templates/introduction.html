@@ -214,11 +214,17 @@
       // Type writer effect function
       function typeWriter(txt, id, completion) {
         if (i < txt.length) {
-          document.getElementById(id).innerHTML += txt.charAt(i);
-          i++;
-          setTimeout(typeWriter, 40, txt, id, completion);
+          if (txt.charAt(i) === '\n') {
+            document.getElementById(id).innerHTML += ' <br> ';
+            i++;
+            setTimeout(typeWriter, 1, txt, id, completion);
+          } else {
+            document.getElementById(id).innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, 40, txt, id, completion);
+          }
         } else {
-          completion();
+          completion()
         }
       }
 
@@ -274,7 +280,8 @@
       <!-- Transmission is interrupted -->
         <div class='around' id='transmissionborder'>
           <p id='interrupt'> *the transmission has been interrupted*
-            I'm so glad I got to you on time! You're my only hope! </p>
+
+            new speaker: I'm so glad I got to you on time! You're my only hope! </p>
             </div>
           <input class='button' type="button" id="explain" onclick="Explain()" value="what's going on?" visibility="hidden">
 
