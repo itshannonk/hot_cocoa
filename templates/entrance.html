@@ -290,7 +290,7 @@
           } else {
             document.getElementById(id).innerHTML += txt.charAt(i);
             i++;
-            setTimeout(typeWriter, 40, txt, id, completion);
+            setTimeout(typeWriter, 1, txt, id, completion);
           }
         } else {
           completion()
@@ -323,11 +323,11 @@
 
     <!-- Progress bar -->
     <div id='progress'>
-      <p> win for the humans! </p>
+      <p> win for You </p>
       <div id='container'>
         <div id='animate'></div>
       </div>
-      <p> win for the AI :( </p>
+      <p> win for AI</p>
     </div>
 
     <!-- player decides how to get to AutoMate building -->
